@@ -1,144 +1,155 @@
 #root {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .login-logo {
-  margin-top: 2em;
-  margin-left: 2em;
-  height: 15vh;
-  align-self: flex-start;
+    margin-top: 2em;
+    margin-left: 2em;
+    height: 15vh;
+    align-self: flex-start;
 }
 
 div .LoginContainer {
-  float: left;
-  display: flex;
-  flex-direction: column;
-  width: 65%;
-  height: 100vh;
-  background-color: #f8f8f8;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    height: 100vh;
+    background-color: #f8f8f8;
 }
 
 .LeftSide {
-  margin: auto;
-  padding-bottom: 10vh;
+    margin: auto;
+    padding-bottom: 10vh;
 }
 
 div .RightSide {
-  display: flex;
-  float: right;
-  width: 35%;
-  height: 100vh;
-  background-color: #3c6e71;
+    display: flex;
+    float: right;
+    width: 35%;
+    height: 100vh;
+    background-color: #3c6e71;
 }
 
 .login-box {
-  display: flex;
-  flex-direction: column;
-  width: 450px;
-  padding: 120px 90px;
-  margin: auto;
-  background: #fff;
-  text-align: center;
-  border-radius: 30px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    padding: 120px 90px;
+    margin: auto;
+    background: #fff;
+    text-align: center;
+    border-radius: 30px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    align-items: center;
 }
 
 .login-box h1 {
-  margin: 0 0 10px 0;
-  color: #000;
+    margin: 0 0 10px 0;
+    color: #000;
 }
 
 .login-box hr {
-  width: 100%;
-  color: #D9D9D9;
-  margin: 50px 0;
+    width: 100%;
+    color: #D9D9D9;
+    margin: 50px 0;
 }
 
 .login-box input {
-  width: 100%;
-  padding: 10px 10px;
-  margin: 0px 0px 20px 0px;
-  border: #f8e5dc solid 2px;
-  border-radius: 40px;
-  background-color: #f8e5dc;
-  color: #959697;
-  font-weight: bold;
-  font-size: 1.2em;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 0px 0px 20px 0px;
+    border: #f8e5dc solid 2px;
+    border-radius: 40px;
+    background-color: #f8e5dc;
+    color: #959697;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 .login-box input:focus {
-  outline: none;
-  border: #E27D4F solid 2px;
+    outline: none;
+    border: #E27D4F solid 2px;
 }
 
 .login-button {
-  margin-top: 40px;
-  padding: 10px 30px;
-  width: 60%;
-  background-color: #E27D4F;
-  color: #fff;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.2em;
+    margin-top: 40px;
+    padding: 10px 30px;
+    width: 60%;
+    background-color: #E27D4F;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 .register-box {
-  margin: auto;
-  padding: 30px;
-  text-align: center;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
 }
 
 .register-button {
-  padding: 10px 40px;
-  background-color: #fff;
-  color: #000;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.2em;
+    padding: 10px 40px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 .register-button:hover {
-  background-color: #E27D4F;
-  color: #fff;
+    background-color: #E27D4F;
+    color: #fff;
 }
 
 
 /* Register Page */
 
 .logo-header {
-  display: flex;
-  align-items: center;
-  height: 10vh;
-  background-color: #FFF;
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    background-color: #FFF;
 }
 
 .logo-header img {
-  width: 8%;
-  margin-left: 10px;
+    width: 8%;
+    margin-left: 10px;
 }
 
 .register-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 90vh;
-  background-color: #3c6e71;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    background-color: #3c6e71;
 }
 
 .logo-title {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
 }
 
 .plain-logo {
-  width: 50%;
-  margin-right: 5px;
+    width: 50%;
+    margin-right: 15px;
+}
+
+
+/* Dashboard Page */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #3c6e71;
 }
