@@ -117,7 +117,7 @@ div .RightSide {
     align-items: center;
     height: 10vh;
     background-color: #FFF;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .logo-header img {
@@ -172,41 +172,41 @@ div .RightSide {
     margin-top: 30px;
     width: 80%;
     max-width: 800px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     color: #7D898F;
 }
 
 .dashboard-section-header {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .dashboard-section-title {
     font-size: 1.5em;
     color: #E27D4F;
-    margin-top: 0; 
+    margin-top: 0;
     margin-bottom: 0;
 }
 
 .dashboard-section-add-button {
-  background-color: #E27D4F;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #E27D4F;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .dashboard-section-add-button:hover {
-  background-color: #7D898F;
+    background-color: #d16c3e;
 }
 
 
@@ -217,7 +217,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     text-align: left;
     border-bottom: 1.5px solid #D9D9D9;
@@ -231,126 +232,146 @@ th {
 
 /* Modal Styles */
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
 .modal-content {
-  background-color: #fff;
-  padding: 25px 30px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 90%;
-  max-width: 550px; 
-  max-height: 90vh;
-  overflow-y: auto;
-  color: #333; 
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 750px;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: #333;
 }
 
 .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .modal-title {
-  margin: 0;
-  font-size: 1.6em;
-  color: #E27D4F;
+    margin: 0;
+    font-size: 1.6em;
+    color: #E27D4F;
 }
 
 .modal-close-button {
-  background: none;
-  border: none;
-  font-size: 1.8em;
-  cursor: pointer;
-  color: #888;
-  padding: 0;
-  line-height: 1;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #888;
+    padding: 0;
+    line-height: 1;
 }
+
 .modal-close-button:hover {
-  color: #555;
+    color: #555;
 }
+
 
 
 /* Application Form Styles */
+.application-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
 .application-form .form-group {
-  margin-bottom: 18px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 18px;
 }
 
 .application-form label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-  color: #555;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #7D898F;
+    margin-right: 10px;
 }
 
 .application-form input[type="text"],
-.application-form input[type="url"],
 .application-form input[type="date"],
 .application-form select,
 .application-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box; 
-  font-size: 1em;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d8d8d8;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+    background-color: #FFF;
+    color: #7D898F;
 }
+
 .application-form input:focus,
 .application-form select:focus,
 .application-form textarea:focus {
-  border-color: #E27D4F;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(226, 125, 79, 0.2);
+    border-color: #E27D4F;
+    outline: none;
 }
 
-
 .application-form textarea {
-  resize: vertical;
+    resize: vertical;
 }
 
 .application-form .form-actions {
-  margin-top: 25px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px; 
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .application-form .button-primary,
 .application-form .button-secondary {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .application-form .button-primary {
-  background-color: #E27D4F;
-  color: white;
+    background-color: #E27D4F;
+    color: white;
 }
+
 .application-form .button-primary:hover {
-  background-color: #d16c3e;
+    background-color: #d16c3e;
 }
 
 .application-form .button-secondary {
-  background-color: #f0f0f0;
-  color: #555;
-  border: 1px solid #ddd;
+    background-color: #fff;
+    color: #3C6E71;
+    border: 1px solid #3C6E71;
 }
+
 .application-form .button-secondary:hover {
-  background-color: #e0e0e0;
+    background-color: #e0e0e0;
 }
