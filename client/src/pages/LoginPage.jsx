@@ -54,7 +54,7 @@ function LoginPage() {
                 <h2>Please Register</h2>
 
                 <button className="register-button" onClick={handleSignup}>
-                Register
+                Sign Up
                 </button>
             </div>
         </div>
