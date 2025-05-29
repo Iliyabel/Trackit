@@ -6,9 +6,10 @@ function DashboardPage() {
         <header>
             <h1>Trackit -- Logo will go here</h1>
         </header>
-        
 
-      <h1>Dashboard</h1>
+        <main>
+            <h1>Dashboard</h1>
+        </main>
 
     </div>
   );

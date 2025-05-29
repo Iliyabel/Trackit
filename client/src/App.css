@@ -1,42 +1,62 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+div .LeftSide {
+  display: flex;
+  float: left;
+  width: 65%;
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+
+div .RightSide {
+  display: flex;
+  float: right;
+  width: 35%;
+  height: 100vh;
+  background-color: #3c6e71;
+}
+
+.login-box {
+  max-width: 400px;
+  margin: auto;
+  padding: 40px;
+  background: #fff;
+  text-align: center;
+  border-radius: 30px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.login-box h1 {
+  margin: 0 0 20px;
+  color: #000;
+}
+
+.login-button {
+  padding: 10px 30px;
+  background-color: #E27D4F;
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.register-box {
+  margin: auto;
+  padding: 30px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.register-button {
+  padding: 10px 40px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
 }

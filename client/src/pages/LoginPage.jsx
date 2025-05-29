@@ -19,15 +19,27 @@ function LoginPage() {
 
   return (
     <div>
-        <h1>Login Page</h1>
+        <div className="LeftSide">
+            <div className='login-box'>
+                <h1>Sign In</h1>
 
-        <button onClick={handleSignup}>
-        Register
-        </button>
+                <button className="login-button" onClick={handleLogin}>
+                Login
+                </button>
+            </div>
 
-        <button onClick={handleLogin}>
-        Login
-        </button>
+        </div>
+
+        <div className="RightSide">
+            <div className="register-box">
+                <h1>No Account?</h1>
+                <h2>Please Register</h2>
+
+                <button className="register-button" onClick={handleSignup}>
+                Register
+                </button>
+            </div>
+        </div>
     </div>
   );
 }

@@ -8,7 +8,16 @@ import './App.css';
 function App() {
   return (
     <>
-      <nav>
+
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+
+        <Route path="/" element={<LoginPage />} /> 
+      </Routes>
+
+      {/* <nav>
         <ul>
           <li>
             <Link to="/login">Login</Link>
@@ -20,15 +29,7 @@ function App() {
             <Link to="/dashboard">Dashboard</Link>
           </li>
         </ul>
-      </nav>
-
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-
-        <Route path="/" element={<LoginPage />} /> 
-      </Routes>
+      </nav> */}
     </>
   );
 }
