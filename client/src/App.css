@@ -227,3 +227,130 @@ th, td {
 th {
     border-bottom: 2px solid #7D898F;
 }
+
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 550px; 
+  max-height: 90vh;
+  overflow-y: auto;
+  color: #333; 
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.6em;
+  color: #E27D4F;
+}
+
+.modal-close-button {
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  cursor: pointer;
+  color: #888;
+  padding: 0;
+  line-height: 1;
+}
+.modal-close-button:hover {
+  color: #555;
+}
+
+
+/* Application Form Styles */
+.application-form .form-group {
+  margin-bottom: 18px;
+}
+
+.application-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #555;
+}
+
+.application-form input[type="text"],
+.application-form input[type="url"],
+.application-form input[type="date"],
+.application-form select,
+.application-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box; 
+  font-size: 1em;
+}
+.application-form input:focus,
+.application-form select:focus,
+.application-form textarea:focus {
+  border-color: #E27D4F;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(226, 125, 79, 0.2);
+}
+
+
+.application-form textarea {
+  resize: vertical;
+}
+
+.application-form .form-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; 
+}
+
+.application-form .button-primary,
+.application-form .button-secondary {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.application-form .button-primary {
+  background-color: #E27D4F;
+  color: white;
+}
+.application-form .button-primary:hover {
+  background-color: #d16c3e;
+}
+
+.application-form .button-secondary {
+  background-color: #f0f0f0;
+  color: #555;
+  border: 1px solid #ddd;
+}
+.application-form .button-secondary:hover {
+  background-color: #e0e0e0;
+}

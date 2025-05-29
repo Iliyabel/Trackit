@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import DashboardSection from '../components/DashboardSection';
+import Modal from '../components/Modal';
+import ApplicationForm from '../components/ApplicationForm';
 
 function DashboardPage() {
     const [applications, setApplications] = useState([
@@ -7,20 +9,25 @@ function DashboardPage() {
         { id: 1, position: 'Software Engineer', company: 'Tech Corp', location: 'Remote', salary: '$120k', date: '2024-05-01', status: 'Applied', url: 'techcorp.com/careers', notes: 'First round interview scheduled.' }
     ]);
 
-    const handleAddApplication = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+    
+    const handleSaveApplication = (formData) => {
         const newApplication = {
-            id: applications.length + 1, 
-            position: '', 
-            company: '',
-            location: '',
-            salary: '',
-            date: new Date().toISOString().split('T')[0],
-            status: 'To Apply',
-            url: '',
-            notes: ''
+            id: applications.length > 0 ? Math.max(...applications.map(app => app.id)) + 1 : 1, // More robust ID
+            ...formData // Spread the form data
         };
         setApplications(prevApplications => [...prevApplications, newApplication]);
+        handleCloseModal(); // Close modal after saving
     };
+
 
     return (
         <div className="dashboard-page">
@@ -35,7 +42,7 @@ function DashboardPage() {
                     <p>We can add charts.</p>
                 </DashboardSection>
 
-                <DashboardSection title="Applications" onAdd={handleAddApplication}>
+                <DashboardSection title="Applications" onAdd={handleOpenModal}>
                     <table>
                         <thead>
                             <tr>
@@ -66,9 +73,15 @@ function DashboardPage() {
                     </table>
                     {applications.length === 0 && <p>No applications added yet. Click "+ Add New" to start!</p>}
                 </DashboardSection>
-
             </div>
 
+            {/* Modal for adding new application */}
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="Add New Job Application">
+                <ApplicationForm 
+                    onSubmit={handleSaveApplication} 
+                    onCancel={handleCloseModal} 
+                />
+            </Modal>
         </div>
     );
 }
