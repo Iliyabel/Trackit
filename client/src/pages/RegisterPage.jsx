@@ -13,14 +13,14 @@ function RegisterPage() {
     };
 
     return (
-        <div>
-            <header className='logo-header'>
+        <div className="register-page">
+            <header className="logo-header">
                 <img className="logo" src={'src/assets/logoText.svg'} alt="Trackit logo" />
             </header>
 
             <div className="register-container">
-                <div className='login-box'>
-                    <div className='logo-title'>
+                <div className="login-box">
+                    <div className="logo-title">
                         <img className="plain-logo" src={'src/assets/logo.svg'} alt="Trackit logo" />
                         <h1>Create An Account</h1>
                     </div>
