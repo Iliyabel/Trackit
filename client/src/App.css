@@ -132,3 +132,13 @@ div .RightSide {
   height: 90vh;
   background-color: #3c6e71;
 }
+
+.logo-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.plain-logo {
+  width: 50%;
+  margin-right: 5px;
+}

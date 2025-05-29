@@ -20,7 +20,11 @@ function RegisterPage() {
 
             <div className="register-container">
                 <div className='login-box'>
-                    <h1>Create an Account</h1>
+                    <div className='logo-title'>
+                        <img className="plain-logo" src={'src/assets/logo.svg'} alt="Trackit logo"/>
+                        <h1>Create An Account</h1>
+                    </div>
+
                     <hr />
 
                     <input
