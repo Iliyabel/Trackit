@@ -1,18 +1,18 @@
 import React from 'react';
 
 function DashboardPage() {
-  return (
-    <div>
-        <header>
-            <h1>Trackit -- Logo will go here</h1>
-        </header>
+    return (
+        <div>
+            <header className='logo-header'>
+                <img className="logo" src={'src/assets/logoText.svg'} alt="Trackit logo" />
+            </header>
 
-        <main>
-            <h1>Dashboard</h1>
-        </main>
+            <div className='dashboard-container'>
+                <h1>Dashboard</h1>
+            </div>
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default DashboardPage;
