@@ -19,16 +19,34 @@ function LoginPage() {
 
   return (
     <div>
+      <div className="LoginContainer">
+        <img className="login-logo" src={'src/assets/logoText.svg'} alt="Trackit logo"/>
         <div className="LeftSide">
-            <div className='login-box'>
-                <h1>Sign In</h1>
+          <div className='login-box'>
+            <h1>Sign In</h1>
+            <hr />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="login-input" 
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="login-input"
+            />
 
-                <button className="login-button" onClick={handleLogin}>
-                Login
-                </button>
-            </div>
+            <button className="login-button" onClick={handleLogin}>
+            Login
+            </button>
+          </div>
 
         </div>
+      </div>
 
         <div className="RightSide">
             <div className="register-box">
