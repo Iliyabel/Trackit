@@ -1,15 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import authService from '../util/auth';
 
 function RegisterPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleRegister = () => {
-        // add data save and validation logic here
-        navigate('/dashboard');
+    const handleRegister = async () => {
+        try {
+            await authService.register(email, password);
+            navigate('/dashboard');
+        } catch (error) {
+            console.error('Registration failed:', error);
+        }
     };
 
     return (

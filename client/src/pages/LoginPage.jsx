@@ -1,19 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import authService from '../util/auth';
 
 function LoginPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        // add authentication logic here
-        navigate('/dashboard');
+    const handleLogin = async () => {
+        try {
+            await authService.login(email, password);
+            navigate('/dashboard');
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
     };
 
     const handleSignup = () => {
-        // add authentication logic here
         navigate('/register');
     };
 
