@@ -1,6 +1,14 @@
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+} */
+
 #root {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .login-logo {
@@ -35,8 +43,10 @@ div .RightSide {
 .login-box {
     display: flex;
     flex-direction: column;
-    width: 450px;
-    padding: 120px 90px;
+    width: 100%;
+    max-width: 400px;
+    max-height: 450px;
+    padding: 60px 50px;
     margin: auto;
     background: #fff;
     text-align: center;
@@ -162,9 +172,11 @@ div .RightSide {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
 }
 
+
+/* Dashboard Section Component */
 .dashboard-section {
     background-color: #FFF;
     border-radius: 20px;
