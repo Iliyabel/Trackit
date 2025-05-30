@@ -6,7 +6,11 @@ import ApplicationForm from '../components/ApplicationForm';
 function DashboardPage() {
     const [applications, setApplications] = useState([
         // Filler data
-        { id: 1, position: 'Software Engineer', company: 'Tech Corp', location: 'Remote', salary: '$120k', date: '2024-05-01', status: 'Applied', url: 'techcorp.com/careers', notes: 'First round interview scheduled.' }
+        { id: 1, position: 'Software Engineer', company: 'Tech Corp', location: 'Remote', salary: '$120k', date: '2024-05-01', status: 'Applied', url: 'techcorp.com/careers', notes: 'First round interview scheduled.' },
+        { id: 1, position: 'a', company: 'a', location: 'a', salary: '$130k', date: '2024-05-03', status: 'Interviewing', url: 'a.com', notes: 'This is temp.' },
+        { id: 1, position: 'b', company: 'b', location: 'b', salary: '$130k', date: '2024-05-03', status: 'Offer-Received', url: 'b.com', notes: 'This is temp.' },
+        { id: 1, position: 'c', company: 'c', location: 'c', salary: '$130k', date: '2024-04-03', status: 'Rejected', url: 'c.com', notes: 'This is temp.' },
+        { id: 1, position: 'd', company: 'd', location: 'd', salary: '$130k', date: '2024-03-06', status: 'Accepted', url: 'd.com', notes: 'This is temp.' }
     ]);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
