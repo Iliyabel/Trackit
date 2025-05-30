@@ -58,7 +58,7 @@ function ApplicationForm({ onSubmit, onCancel, initialData = {} }) {
                         <select id="status" name="status" value={formData.status} onChange={handleChange}>
                             <option value="Applied">Applied</option>
                             <option value="Interviewing">Interviewing</option>
-                            <option value="Offer Received">Offer Received</option>
+                            <option value="Offer-Received">Offer Received</option>
                             <option value="Rejected">Rejected</option>
                             <option value="Accepted">Accepted</option>
                         </select>

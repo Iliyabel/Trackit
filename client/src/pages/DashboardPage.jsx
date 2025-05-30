@@ -28,7 +28,6 @@ function DashboardPage() {
         handleCloseModal(); // Close modal after saving
     };
 
-
     return (
         <div className="dashboard-page">
             <header className='logo-header'>
@@ -64,7 +63,11 @@ function DashboardPage() {
                                     <td>{app.location || 'N/A'}</td>
                                     <td>{app.salary || 'N/A'}</td>
                                     <td>{app.date || 'N/A'}</td>
-                                    <td>{app.status || 'N/A'}</td>
+                                    <td>
+                                        <span className={`status-cell status-${app.status.toLowerCase().replace(/\s+/g, '-')}`}>
+                                            {app.status || 'N/A'}
+                                        </span>
+                                    </td>
                                     <td>{app.url ? <a href={app.url} target="_blank" rel="noopener noreferrer" style={{color: '#88C0D0'}}>Link</a> : 'N/A'}</td>
                                     <td>{app.notes || 'N/A'}</td>
                                 </tr>
