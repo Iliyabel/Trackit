@@ -43,7 +43,7 @@ function RegisterPage() {
                         className="login-input"
                     />
 
-                    <button className="login-button" onClick={handleRegister}>
+                    <button className="button-primary" onClick={handleRegister}>
                         Create Account
                     </button>
                 </div>
