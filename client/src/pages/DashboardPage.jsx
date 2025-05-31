@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import DashboardSection from '../components/DashboardSection';
 import Modal from '../components/Modal';
 import ApplicationForm from '../components/ApplicationForm';
+import ApplicationStats from '../components/ApplicationStats';
 
 function DashboardPage() {
     const [applications, setApplications] = useState([
@@ -25,6 +26,7 @@ function DashboardPage() {
     // Sort State -- default to sorting by date descending
     // key: column to sort by, direction: 'ascending' or 'descending'
     const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'descending' });
+
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
@@ -145,8 +147,7 @@ function DashboardPage() {
 
             <div className='dashboard-container'>
                 <DashboardSection title="Dashboard Overview">
-                    <p>This is where our overview content will go.</p>
-                    <p>We can add charts.</p>
+                    <ApplicationStats applications={applications} /> 
                 </DashboardSection>
 
                 <DashboardSection title="Applications" onAdd={handleOpenModal}>
