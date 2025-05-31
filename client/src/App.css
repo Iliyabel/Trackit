@@ -212,61 +212,79 @@ div.login-box .button-primary {
 
 
 
-/* Dashboard Table */
-table {
+/* Filter Row */
+.filters-container {
+  display: flex;
+  gap: 10px; /* Spacing between filter inputs */
+  margin: 20px 0; 
+  flex-wrap: wrap; 
+}
+
+.filters-container input[type="text"],
+.filters-container select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9em;
+  flex-grow: 1; 
+  min-width: 150px; 
+}
+
+.filters-container input:focus,
+.filters-container select:focus {
+    border-color: #E27D4F;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(226, 125, 79, 0.2);
+}
+
+
+
+/* Dashboard Table */ 
+.dashboard-section  table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th, td {
+.dashboard-section  th, td {
     padding: 12px;
     text-align: left;
+    font-size: 0.9em;
     border-bottom: 1.5px solid #D9D9D9;
     color: #7D898F
 }
 
-th {
+.dashboard-section th {
     border-bottom: 2px solid #7D898F;
     cursor: pointer;
     position: relative;
     user-select: none;
 }
 
+.dashboard-section th:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
 .status-cell {
-    padding: 8px 12px;
-    border-radius: 15px;
+    padding: 5px 8px;
+    border-radius: 20px;
     text-align: center;
     font-weight: bold;
     color: #fff; 
-    font-size: 0.9em;
+    font-size: 0.8em;
     min-width: 100px; 
     display: inline-block; 
 }
 
-.status-applied {
-    background-color: #2196F3;
-    color: white;
-}
+.status-applied { background-color: #2196F3; }
 
-.status-interviewing {
-    background-color: #FFC107; 
-    color: #333; 
-}
+.status-interviewing { background-color: #FFC107; color: #333; }
 
-.status-accepted {
-    background-color: #9C27B0; 
-    color: white;
-}
+.status-accepted { background-color: #9C27B0; }
 
-.status-offer-received {
-    background-color: #4CAF50;
-    color: white;
-}
+.status-offer-received { background-color: #4CAF50; }
 
-.status-rejected {
-    background-color: #F44336; 
-    color: white;
-}
+.status-rejected { background-color: #F44336; }
+
 
 
 /* Modal Styles */

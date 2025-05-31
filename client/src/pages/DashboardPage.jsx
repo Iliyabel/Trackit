@@ -83,7 +83,7 @@ function DashboardPage() {
                     bValue = bValue ? new Date(bValue) : new Date(0);
 
                 } else if (sortConfig.key === 'status') {
-                    // Use predefined order to sort statuses
+                    // Use set order to sort statuses
                     aValue = statusOrder.indexOf(a.status);
                     bValue = statusOrder.indexOf(b.status);
 
@@ -110,6 +110,7 @@ function DashboardPage() {
     // Sort Request Handler 
     const requestSort = (key) => {
         let direction = 'ascending';
+
         // If sorting by the same key, toggle direction
         if (sortConfig.key === key && sortConfig.direction === 'ascending') {
             direction = 'descending';
@@ -140,7 +141,7 @@ function DashboardPage() {
     return (
         <div className="dashboard-page">
             <header className='logo-header'>
-                <img className="logo" src={'../assets/logoText.svg'} alt="Trackit logo" />
+                <img className="logo" src={'src/assets/logoText.svg'} alt="Trackit logo" />
             </header>
 
             <div className='dashboard-container'>
