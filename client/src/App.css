@@ -306,6 +306,16 @@ div.dashboard-section .button-primary {
     background-color: rgba(230, 230, 230, 0.5); 
 }
 
+.dashboard-section tbody tr:hover {
+    background-color: #f0f0f0; 
+    cursor: pointer;
+}
+
+.edit-modal .form-group {
+    margin-bottom: 15px;
+    cursor: default;
+}
+
 .sort-arrow {
     display: inline-block; 
     margin-left: 5px; 
@@ -447,7 +457,7 @@ div.dashboard-section .button-primary {
     resize: vertical;
 }
 
-.application-form .form-actions {
+.form-actions {
     margin-top: 25px;
     display: flex;
     justify-content: center;
@@ -455,7 +465,8 @@ div.dashboard-section .button-primary {
 }
 
 .button-primary,
-.button-secondary {
+.button-secondary,
+.button-delete {
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
@@ -483,4 +494,13 @@ div.dashboard-section .button-primary {
 
 .button-secondary:hover {
     background-color: #e0e0e0;
+}
+
+.button-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.button-delete:hover {
+    background-color: #c24031;
 }

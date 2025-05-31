@@ -15,7 +15,14 @@ function DashboardPage() {
         { id: 6, position: 'Backend Developer', company: 'Tech Corp', location: 'Remote', salary: '$135k', date: '2024-04-10', status: 'Applied', url: 'techcorp.com/careers', notes: 'Waiting for response.' },
     ]);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // Modal States
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isViewEditModalOpen, setIsViewEditModalOpen] = useState(false);
+
+    // Selected Appication and Edit Mode States
+    const [selectedApp, setSelectedApp] = useState(null); // For viewing/editing
+    const [editFormData, setEditFormData] = useState({}); // Form data for the selected app
+    const [isEditModeActive, setIsEditModeActive] = useState(false); // To toggle
 
     // Filter States 
     const [filterPosition, setFilterPosition] = useState('');
@@ -23,31 +30,71 @@ function DashboardPage() {
     const [filterLocation, setFilterLocation] = useState('');
     const [filterStatus, setFilterStatus] = useState('All');
 
+    // Status Order for sorting
+    const statusOrder = ['Accepted', 'Offer-Received', 'Interviewing', 'Applied', 'Rejected'];
+
     // Sort State -- default to sorting by date descending
     // key: column to sort by, direction: 'ascending' or 'descending'
     const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'descending' });
 
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
+    // Handlers for "Add Application" Modal
+    const handleOpenAddModal = () => setIsAddModalOpen(true);
+    const handleCloseAddModal = () => setIsAddModalOpen(false);
+
+    const handleSaveNewApplication = (newAppData) => {
+        setApplications(prevApps => [
+            ...prevApps,
+            { ...newAppData, id: prevApps.length > 0 ? Math.max(...prevApps.map(app => app.id)) + 1 : 1 }
+        ]);
+        handleCloseAddModal();
     };
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
+
+    // Handlers for "View/Edit Application" Modal
+    const handleTableRowClick = (app) => {
+        setSelectedApp(app);
+        setEditFormData({ ...app }); // Populate form with selected appications data
+        setIsEditModeActive(false); // default to view mode
+        setIsViewEditModalOpen(true);
+    };
+
+    const handleCloseViewEditModal = () => {
+        setIsViewEditModalOpen(false);
+        setSelectedApp(null);
+        setEditFormData({});
+        setIsEditModeActive(false);
+    };
+
+    const toggleEditMode = () => {
+        if (isEditModeActive) { // If switching from Edit to View
+            setEditFormData({ ...selectedApp }); // Revert any unsaved changes
+        }
+        setIsEditModeActive(!isEditModeActive);
     };
     
-    const handleSaveApplication = (formData) => {
-        const newApplication = {
-            id: applications.length > 0 ? Math.max(...applications.map(app => app.id)) + 1 : 1,
-            ...formData
-        };
-        setApplications(prevApplications => [...prevApplications, newApplication]);
-        handleCloseModal();
+    const handleEditFormChange = (e) => {
+        const { name, value } = e.target;
+        setEditFormData(prevData => ({ ...prevData, [name]: value }));
     };
 
-    // Filtering and Sorting Logic 
-    const statusOrder = ['Accepted', 'Offer-Received', 'Interviewing', 'Applied', 'To Apply', 'Rejected'];
+    const handleSaveChanges = () => {
+        setApplications(prevApps => 
+            prevApps.map(app => app.id === selectedApp.id ? { ...editFormData } : app)
+        );
+        setSelectedApp({...editFormData}); // Update selectedApp to reflect saved changes
+        setIsEditModeActive(false); // Switch back to view mode
+    };
 
+    const handleDeleteApplication = () => {
+        if (selectedApp && window.confirm(`Are you sure you want to delete the application for "${selectedApp.position}" at "${selectedApp.company}"?`)) {
+            setApplications(prevApps => prevApps.filter(app => app.id !== selectedApp.id));
+            handleCloseViewEditModal();
+        }
+    };
+
+
+    // Filtering and Sorting
     const processedApplications = useMemo(() => {
         let filteredApps = [...applications];
 
@@ -150,32 +197,21 @@ function DashboardPage() {
                     <ApplicationStats applications={applications} /> 
                 </DashboardSection>
 
-                <DashboardSection title="Applications" onAdd={handleOpenModal}>
+                <DashboardSection title="Applications" onAdd={handleOpenAddModal}>
 
                     <div className="filters-container">
-                        <input 
-                            type="text" 
-                            placeholder="Filter by Position..." 
-                            value={filterPosition} 
-                            onChange={(e) => setFilterPosition(e.target.value)} 
-                        />
-                        <input 
-                            type="text" 
-                            placeholder="Filter by Company..." 
-                            value={filterCompany} 
-                            onChange={(e) => setFilterCompany(e.target.value)} 
-                        />
-                        <input 
-                            type="text" 
-                            placeholder="Filter by Location..." 
-                            value={filterLocation} 
-                            onChange={(e) => setFilterLocation(e.target.value)} 
-                        />
+                        <input type="text" placeholder="Filter by Position..." value={filterPosition} 
+                            onChange={(e) => setFilterPosition(e.target.value)} />
+
+                        <input type="text" placeholder="Filter by Company..." value={filterCompany} 
+                            onChange={(e) => setFilterCompany(e.target.value)} />
+
+                        <input type="text" placeholder="Filter by Location..." value={filterLocation} 
+                            onChange={(e) => setFilterLocation(e.target.value)} />
+
                         <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
                             <option value="All">All Statuses</option>
-                            {statusOrder.map(status => (
-                                <option key={status} value={status}>{status}</option>
-                            ))}
+                            {statusOrder.map(status => (<option key={status} value={status}>{status}</option>))}
                         </select>
                     </div>
 
@@ -195,7 +231,7 @@ function DashboardPage() {
                             </thead>
                             <tbody>
                                 {processedApplications.map(app => (
-                                    <tr key={app.id}>
+                                    <tr key={app.id} onClick={() => handleTableRowClick(app)}>
                                         <td>{app.position || 'N/A'}</td>
                                         <td>{app.company || 'N/A'}</td>
                                         <td>{app.location || 'N/A'}</td>
@@ -218,12 +254,42 @@ function DashboardPage() {
                 </DashboardSection>
             </div>
 
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="Add New Job Application">
+            <Modal isOpen={isAddModalOpen} onClose={handleCloseAddModal} title="Add New Job Application">
                 <ApplicationForm 
-                    onSubmit={handleSaveApplication} 
-                    onCancel={handleCloseModal} 
+                    onSubmit={handleSaveNewApplication} 
+                    onCancel={handleCloseAddModal}
                 />
             </Modal>
+
+            {selectedApp && ( // Only show if a job appication is selected
+                <Modal 
+                    isOpen={isViewEditModalOpen} 
+                    onClose={handleCloseViewEditModal} 
+                    title={isEditModeActive ? "Edit Application Details" : "View Application Details"}
+                >
+                    <ApplicationForm
+                        key={selectedApp.id + (isEditModeActive ? '-edit' : '-view')} 
+                        initialData={editFormData} // Pass the editable form data
+                        onFormChange={handleEditFormChange} // To make it controlled
+                        isReadOnly={!isEditModeActive}
+                        showActionButtons={false} // External buttons for this modal
+                    />
+                    <div className="form-actions" >
+                        {!isEditModeActive ? (
+                            <>
+                                <button type="button" className="button-primary" onClick={toggleEditMode}>Edit</button>
+                                <button type="button" className="button-delete" onClick={handleDeleteApplication}>Delete</button>
+                                <button type="button" className="button-secondary" onClick={handleCloseViewEditModal}>Close</button>
+                            </>
+                        ) : (
+                            <>
+                                <button type="button" className="button-primary" onClick={handleSaveChanges}>Save Changes</button>
+                                <button type="button" className="button-secondary" onClick={toggleEditMode}>Cancel</button>
+                            </>
+                        )}
+                    </div>
+                </Modal>
+            )}
         </div>
     );
 }
