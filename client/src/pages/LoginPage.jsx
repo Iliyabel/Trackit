@@ -44,7 +44,7 @@ function LoginPage() {
                             className="login-input"
                         />
 
-                        <button className="login-button" onClick={handleLogin}>
+                        <button className="button-primary" onClick={handleLogin}>
                             Login
                         </button>
                     </div>
