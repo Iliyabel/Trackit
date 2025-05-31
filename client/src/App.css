@@ -227,6 +227,12 @@ div.dashboard-section .button-primary {
 
 
 /* Dashboard Table */ 
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto; 
+  margin-top: 10px; 
+}
+
 .dashboard-section  table {
     width: 100%;
     border-collapse: collapse;
@@ -244,10 +250,24 @@ div.dashboard-section .button-primary {
     cursor: pointer;
     position: relative;
     user-select: none;
+    white-space: nowrap; 
+    padding-right: 20px;
 }
 
 .dashboard-section th:hover {
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(230, 230, 230, 0.5); 
+}
+
+.sort-arrow {
+  display: inline-block; 
+  margin-left: 5px; 
+  color: #b0bec5; 
+  font-size: 0.8em;    
+  transition: color 0.2s ease; 
+}
+
+.sort-arrow.active {
+  color: #E27D4F; 
 }
 
 .status-cell {

@@ -131,11 +131,10 @@ function DashboardPage() {
 
     // Helper to get sort direction indicator
     const getSortIndicator = (key) => {
-        if (sortConfig.key === key) {
-            return sortConfig.direction === 'ascending' ? ' ▲' : ' ▼';
-        }
+        const isActive = sortConfig.key === key;
+        const arrow = sortConfig.direction === 'ascending' ? '▼' : '▲';
 
-        return '';
+        return <span className={`sort-arrow ${isActive ? 'active' : ''}`}>{isActive ? arrow : '▼'}</span>;
     };
 
     return (
@@ -179,38 +178,40 @@ function DashboardPage() {
                         </select>
                     </div>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th onClick={() => requestSort('position')}>Job Position{getSortIndicator('position')}</th>
-                                <th onClick={() => requestSort('company')}>Company{getSortIndicator('company')}</th>
-                                <th onClick={() => requestSort('location')}>Location{getSortIndicator('location')}</th>
-                                <th onClick={() => requestSort('date')}>Date{getSortIndicator('date')}</th>
-                                <th onClick={() => requestSort('status')}>Status{getSortIndicator('status')}</th>
-                                <th>Salary</th>
-                                <th>Url</th>
-                                <th>Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {processedApplications.map(app => (
-                                <tr key={app.id}>
-                                    <td>{app.position || 'N/A'}</td>
-                                    <td>{app.company || 'N/A'}</td>
-                                    <td>{app.location || 'N/A'}</td>
-                                    <td>{app.date || 'N/A'}</td>
-                                    <td>
-                                        <span className={`status-cell status-${app.status.toLowerCase().replace(/\s+/g, '-')}`}>
-                                            {app.status || 'N/A'}
-                                        </span>
-                                    </td>
-                                    <td>{app.salary || 'N/A'}</td>
-                                    <td>{app.url ? <a href={app.url.startsWith('http') ? app.url : `https://${app.url}`} target="_blank" rel="noopener noreferrer" style={{color: '#88C0D0'}}>Link</a> : 'N/A'}</td>
-                                    <td>{app.notes || 'N/A'}</td>
+                    <div className="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th onClick={() => requestSort('position')}>Job Position{getSortIndicator('position')}</th>
+                                    <th onClick={() => requestSort('company')}>Company{getSortIndicator('company')}</th>
+                                    <th onClick={() => requestSort('location')}>Location{getSortIndicator('location')}</th>
+                                    <th onClick={() => requestSort('date')}>Date{getSortIndicator('date')}</th>
+                                    <th onClick={() => requestSort('status')}>Status{getSortIndicator('status')}</th>
+                                    <th>Salary</th>
+                                    <th>Url</th>
+                                    <th>Notes</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {processedApplications.map(app => (
+                                    <tr key={app.id}>
+                                        <td>{app.position || 'N/A'}</td>
+                                        <td>{app.company || 'N/A'}</td>
+                                        <td>{app.location || 'N/A'}</td>
+                                        <td>{app.date || 'N/A'}</td>
+                                        <td>
+                                            <span className={`status-cell status-${app.status.toLowerCase().replace(/\s+/g, '-')}`}>
+                                                {app.status || 'N/A'}
+                                            </span>
+                                        </td>
+                                        <td>{app.salary || 'N/A'}</td>
+                                        <td>{app.url ? <a href={app.url.startsWith('http') ? app.url : `https://${app.url}`} target="_blank" rel="noopener noreferrer" style={{color: '#88C0D0'}}>Link</a> : 'N/A'}</td>
+                                        <td>{app.notes || 'N/A'}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                     {processedApplications.length === 0 && applications.length > 0 && <p>No applications match your current filters.</p>}
                     {applications.length === 0 && <p>No applications added yet. Click "+ Add New" to start!</p>}
                 </DashboardSection>
