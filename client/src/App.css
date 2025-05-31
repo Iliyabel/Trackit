@@ -191,31 +191,16 @@ div.login-box .button-primary {
     margin-bottom: 0;
 }
 
-.dashboard-section-add-button {
-    background-color: #E27D4F;
-    color: white;
-    border: none;
+div.dashboard-section .button-primary {
     padding: 8px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 14px;
-    font-weight: bold;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
-
-.dashboard-section-add-button:hover {
-    background-color: #d16c3e;
-}
-
 
 
 /* Filter Row */
 .filters-container {
   display: flex;
-  gap: 10px; /* Spacing between filter inputs */
+  gap: 10px;
   margin: 20px 0; 
   flex-wrap: wrap; 
 }
@@ -223,16 +208,18 @@ div.login-box .button-primary {
 .filters-container input[type="text"],
 .filters-container select {
   padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
   font-size: 0.9em;
   flex-grow: 1; 
   min-width: 150px; 
+  background-color: #f8f8f8;
+  color: #000;
 }
 
 .filters-container input:focus,
 .filters-container select:focus {
-    border-color: #E27D4F;
+    border: 2px solid #E27D4F;
     outline: none;
     box-shadow: 0 0 0 2px rgba(226, 125, 79, 0.2);
 }
@@ -248,7 +235,6 @@ div.login-box .button-primary {
 .dashboard-section  th, td {
     padding: 12px;
     text-align: left;
-    font-size: 0.9em;
     border-bottom: 1.5px solid #D9D9D9;
     color: #7D898F
 }
@@ -368,7 +354,7 @@ div.login-box .button-primary {
     margin-bottom: 6px;
     font-weight: bold;
     color: #7D898F;
-    margin-right: 10px;
+    margin: auto 10px auto 0;
 }
 
 .application-form input[type="text"],
@@ -383,6 +369,8 @@ div.login-box .button-primary {
     font-size: 1em;
     background-color: #FFF;
     color: #7D898F;
+    font-size: 0.9em;
+    /* font-size: small; */
 }
 
 .application-form input:focus,

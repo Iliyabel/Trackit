@@ -7,7 +7,7 @@ function DashboardSection({ title, children, onAdd }) {
         {title && <h2 className="dashboard-section-title">{title}</h2>}
 
         {onAdd && (
-          <button onClick={onAdd} className="dashboard-section-add-button">
+          <button onClick={onAdd} className="button-primary">
             + Add Job Application
           </button>
         )}
