@@ -1,8 +1,15 @@
-import {  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut  } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 
 class AuthService {
     currentUser = null;
+
+    constructor() {
+    // Automatically set currentUser if already logged in
+    onAuthStateChanged(auth, (user) => {
+      this.currentUser = user;
+    });
+  }
 
     register(email, password) {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -16,7 +23,7 @@ class AuthService {
     }
 
     login(email, password) {
-        return auth.signInWithEmailAndPassword(email, password)
+        return signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 this.currentUser = userCredential.user;
                 return this.currentUser;
@@ -34,6 +41,14 @@ class AuthService {
             .catch((error) => {
                 throw new Error(`Error ${error.code}: ${error.message}`);
             });
+    }
+
+    resetPassword(email) {
+        return auth.sendPasswordResetEmail(email);
+    }
+
+    isAuthenticated() {
+        return this.currentUser !== null;
     }
 
     getToken() {
