@@ -194,7 +194,12 @@ function DashboardPage() {
 
             <div className='dashboard-container'>
                 <DashboardSection title="Dashboard Overview">
-                    <ApplicationStats applications={applications} /> 
+                    <ApplicationStats 
+                        applications={applications} 
+                        onStatClick={(status) =>
+                            setFilterStatus(prev => (prev === status ? 'All' : status))
+                        }
+                        activeStatus={filterStatus}/> 
                 </DashboardSection>
 
                 <DashboardSection title="Applications" onAdd={handleOpenAddModal}>
