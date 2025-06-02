@@ -538,3 +538,37 @@ div.dashboard-section .button-primary {
   font-size: 2.5em;
 }
 
+/* Notes Modal Styling */
+.notes-modal {
+  padding: 20px;
+}
+
+.notes-modal label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: var(--light-text-color);
+  font-size: 1em;
+}
+
+.notes-modal textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 12px;
+  font-size: 1em;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  border-radius: 12px;
+  border: 1px solid var(--light-border-color);
+  background-color: var(--input-background-color);
+  resize: vertical;
+  color: var(--dark-text-color);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.05);
+}
+
+.notes-modal textarea:focus {
+  border: 1px solid var(--input-focus-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(226, 125, 79, 0.2);
+}
+
+
