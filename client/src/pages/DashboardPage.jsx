@@ -3,6 +3,7 @@ import DashboardSection from '../components/DashboardSection';
 import Modal from '../components/Modal';
 import ApplicationForm from '../components/ApplicationForm';
 import ApplicationStats from '../components/ApplicationStats';
+import NotesModal from '../components/NotesModal';
 
 function DashboardPage() {
     const [applications, setApplications] = useState([
@@ -29,6 +30,12 @@ function DashboardPage() {
     const [filterCompany, setFilterCompany] = useState('');
     const [filterLocation, setFilterLocation] = useState('');
     const [filterStatus, setFilterStatus] = useState('All');
+
+    //Notes States
+    const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
+    const [editingNotes, setEditingNotes] = useState('');
+    const [notesAppId, setNotesAppId] = useState(null);
+
 
     // Status Order for sorting
     const statusOrder = ['Accepted', 'Offer-Received', 'Interviewing', 'Applied', 'Rejected'];
@@ -93,6 +100,20 @@ function DashboardPage() {
         }
     };
 
+    const handleNotesClick = (app) => {
+        setEditingNotes(app.notes || '');
+        setNotesAppId(app.id);
+        setIsNotesModalOpen(true);
+    };
+
+    const handleSaveNotes = () => {
+    setApplications(prevApps =>
+        prevApps.map(app =>
+        app.id === notesAppId ? { ...app, notes: editingNotes } : app
+        )
+    );
+    setIsNotesModalOpen(false);
+    };
 
     // Filtering and Sorting
     const processedApplications = useMemo(() => {
@@ -248,7 +269,13 @@ function DashboardPage() {
                                         </td>
                                         <td>{app.salary || 'N/A'}</td>
                                         <td>{app.url ? <a href={app.url.startsWith('http') ? app.url : `https://${app.url}`} target="_blank" rel="noopener noreferrer" style={{color: '#88C0D0'}}>Link</a> : 'N/A'}</td>
-                                        <td>{app.notes || 'N/A'}</td>
+                                        <td 
+                                            onClick={() => handleNotesClick(app)} 
+                                            style={{ cursor: 'pointer', color: '#88C0D0', textDecoration: 'underline' }}
+                                            >
+                                                {app.notes ? 'View/Edit' : 'Add Notes'}
+                                        </td>
+
                                     </tr>
                                 ))}
                             </tbody>
@@ -279,6 +306,7 @@ function DashboardPage() {
                         isReadOnly={!isEditModeActive}
                         showActionButtons={false} // External buttons for this modal
                     />
+                    
                     <div className="form-actions" >
                         {!isEditModeActive ? (
                             <>
@@ -294,6 +322,18 @@ function DashboardPage() {
                         )}
                     </div>
                 </Modal>
+            )}
+            {isNotesModalOpen && (
+            <Modal isOpen={isNotesModalOpen} onClose={() => setIsNotesModalOpen(false)} title="Notes">
+                <NotesModal 
+                notes={editingNotes}
+                onChange={setEditingNotes}
+                />
+                <div className="form-actions">
+                <button className="button-primary" onClick={handleSaveNotes}>Save Notes</button>
+                <button className="button-secondary" onClick={() => setIsNotesModalOpen(false)}>Cancel</button>
+                </div>
+            </Modal>
             )}
         </div>
     );
