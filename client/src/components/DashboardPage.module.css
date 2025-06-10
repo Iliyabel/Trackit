@@ -1,0 +1,11 @@
+.dashboardPage {
+  background-color: var(--background-green);
+  min-height: 100vh;
+}
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+}

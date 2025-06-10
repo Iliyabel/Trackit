@@ -6,6 +6,7 @@ import ApplicationStats from '../components/ApplicationStats';
 import NotesModal from '../components/NotesModal';
 import Header from '../components/Header';
 import { filterApplications, sortApplications } from '../util/filter';
+import styles from '../components/DashboardPage.module.css';
 
 function DashboardPage() {
     const [applications, setApplications] = useState([
@@ -155,10 +156,10 @@ function DashboardPage() {
     };
 
     return (
-        <div className="dashboard-page">
+        <div className={styles.dashboardPage}>
             <Header></Header>
 
-            <div className='dashboard-container'>
+            <div className={styles.dashboardContainer}>
                 <DashboardSection title="Dashboard Overview">
                     <ApplicationStats 
                         applications={applications} 
