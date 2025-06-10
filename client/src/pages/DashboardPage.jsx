@@ -4,6 +4,7 @@ import Modal from '../components/Modal';
 import ApplicationForm from '../components/ApplicationForm';
 import ApplicationStats from '../components/ApplicationStats';
 import NotesModal from '../components/NotesModal';
+import Header from '../components/Header';
 
 function DashboardPage() {
     const [applications, setApplications] = useState([
@@ -209,9 +210,7 @@ function DashboardPage() {
 
     return (
         <div className="dashboard-page">
-            <header className='logo-header'>
-                <img className="logo" src={'src/assets/logoText.svg'} alt="Trackit logo" />
-            </header>
+            <Header></Header>
 
             <div className='dashboard-container'>
                 <DashboardSection title="Dashboard Overview">

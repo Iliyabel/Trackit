@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import authService from '../util/auth';
+import Header from '../components/Header';
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -19,9 +20,7 @@ function RegisterPage() {
 
     return (
         <div className="register-page">
-            <header className="logo-header">
-                <img className="logo" src={'src/assets/logoText.svg'} alt="Trackit logo" />
-            </header>
+            <Header></Header>
 
             <div className="register-container">
                 <div className="login-box">
