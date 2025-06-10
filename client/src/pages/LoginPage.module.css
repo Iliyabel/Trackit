@@ -1,0 +1,50 @@
+.loginPage {
+    display: grid;
+    grid-template-columns: auto 40%;
+}
+
+.leftPanel, .rightPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 10px;
+}
+
+.logo {
+    height: auto;
+    width: 25%;
+    max-width: 500px;
+    position: absolute;
+    z-index: 1000;
+    top: 20px;
+    left: 20px;
+}
+
+.leftPanel {
+    background-color: var(--background-white);
+}
+
+.rightPanel {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.rightPanel h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.rightPanel h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.registerButton {
+    border: none;
+    background: var(--background-white ); 
+    border-radius: 100px;
+    padding: 10px 50px;
+}

@@ -10,6 +10,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: #3C6E71;
+  --secondary-color: #e27d4f;
+  --tertiary-color:  #e6cb5c;
+  --background-white: #f8f9fa;
+  --light-border: rgb(216, 216, 216);
+  --error-background: #f8d7da;
+  --error: #dc3545;
+  --disabled-background: var(--light-border);
+  --disabled: grey;
 }
 
 * {
@@ -34,9 +44,21 @@ button {
 button:hover {
   transform: scale(1.03);
   transition: transform 0.15s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.18);
 }
 
 button:active {
   transform: scale(0.98);
   transition: transform 0.15s;
+}
+
+input {
+  padding: 7.5px 10px;
+  border-radius: 20px;
+  font-size: 1.2em;
+  border: 2px solid var(--light-border);
+}
+
+input::placeholder {
+  color: #a8a8a8;
 }

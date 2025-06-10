@@ -1,68 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import authService from '../util/auth';
+import { AuthContext } from '../components/AuthProvider';
+import LoginCard from '../components/LoginCard';
+import styles from './LoginPage.module.css'
 
 function LoginPage() {
-    const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [newUser, setNewUser] = useState(false);
 
-    const handleLogin = async () => {
-        try {
-            await authService.login(email, password);
-            navigate('/dashboard');
-        } catch (error) {
-            console.error('Login failed:', error);
-        }
-    };
-
-    const handleSignup = () => {
+    function handleSignup() {
         navigate('/register');
-    };
+    }
 
     return (
-        <div>
-            <div className="LoginContainer">
-                <img className="login-logo" src={'src/assets/logoText.svg'} alt="Trackit logo" />
-                <div className="LeftSide">
-                    <div className='login-box'>
-                        <h1>Sign In</h1>
-                        <hr />
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="login-input"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="login-input"
-                        />
-
-                        <button className="button-primary" onClick={handleLogin}>
-                            Login
+        <>
+            <div className={styles.loginPage}>
+                <img src="src/assets/LogoText.svg" alt="Logo" className={styles.logo} />
+                <div className={styles.leftPanel}>
+                    <LoginCard newUser={newUser} setNewUser={setNewUser} className={styles.loginCard} />
+                </div>
+                <div className={styles.rightPanel}>
+                    <div className={styles.registerBox}>
+                        {newUser ? (
+                        <>
+                            <h1>No Account?</h1>
+                            <h2>Sign up to get started</h2>
+                        </>
+                        ) : (
+                        <>
+                            <h1>Already Have an Account?</h1>
+                            <h2>Sign in here</h2>
+                        </>
+                        )}
+                        <button className={styles.registerButton} onClick={() => setNewUser(!newUser)}>
+                            Sign Up
                         </button>
                     </div>
-
                 </div>
             </div>
 
-            <div className="RightSide">
-                <div className="register-box">
-                    <h1>No Account?</h1>
-                    <h2>Please Register</h2>
-
-                    <button className="register-button" onClick={handleSignup}>
-                        Sign Up
-                    </button>
-                </div>
-            </div>
-        </div>
+        </>
     );
 }
 

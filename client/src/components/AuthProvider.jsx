@@ -28,8 +28,6 @@ function AuthProvider({ children }) {
                     isAuthenticated: true,
                     token: token
                 });
-            }).catch((error) => {
-                console.error("Error getting token:", error);
             });
         });
         // Clean up the listener on unmount
@@ -39,31 +37,19 @@ function AuthProvider({ children }) {
     // Use useCallback to memoize the functions to prevent unnecessary re-renders
 
     const login = useCallback((email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
-            .catch((error) => {
-                throw new Error(`Error ${error.code}: ${error.message}`);
-            });
+        return signInWithEmailAndPassword(auth, email, password);
     }, []);
 
     const logout = useCallback(() => {
-        return signOut(auth)
-            .catch((error) => {
-                throw new Error(`Error ${error.code}: ${error.message}`);
-            });
+        return signOut(auth);
     }, []);
 
     const register = useCallback((email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
-            .catch((error) => {
-                throw new Error(`Error ${error.code}: ${error.message}`);
-            });
+        return createUserWithEmailAndPassword(auth, email, password);
     }, []);
 
     const resetPassword = useCallback((email) => {
-        return sendPasswordResetEmail(auth, email)
-            .catch((error) => {
-                throw new Error(`Error ${error.code}: ${error.message}`);
-            });
+        return sendPasswordResetEmail(auth, email);
     }, []);
 
     // Memoize the context value to prevent unnecessary re-renders
