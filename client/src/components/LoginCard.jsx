@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginCard.module.css';
 import Modal from './Modal.jsx';
@@ -48,7 +48,6 @@ function LoginCard({ newUser, setNewUser, ...props }) {
         if(!validateFields()) return;
         try {
             await login(email, password);
-            navigate('/dashboard');
         } catch (error) {
             switch (error.code) {
                 case 'auth/user-not-found':
@@ -69,7 +68,6 @@ function LoginCard({ newUser, setNewUser, ...props }) {
         if(!validateFields()) return;
         try {
             await register(email, password);
-            navigate('/dashboard');
         } catch (error) {
             if( error.code === 'auth/email-already-in-use') {
                 setAuthError('Email already in use. Please use a different email.');
@@ -94,6 +92,15 @@ function LoginCard({ newUser, setNewUser, ...props }) {
             } else {
                 setModalError(`${error.message}`);
             }
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (newUser) {
+            handleRegister();
+        } else {
+            handleLogin();
         }
     };
 
@@ -168,7 +175,7 @@ function LoginCard({ newUser, setNewUser, ...props }) {
             <div>
                 <img src="src/assets/logo.svg" alt="Logo" className={styles.logo} />
             </div>
-            <form className={styles.form} onKeyDown={() => {if (event.key === 'Enter') { event.preventDefault(); newUser ? handleRegister() : handleLogin(); }}}>
+            <form className={styles.form} onKeyDown={(event) => {if (event.key === 'Enter') {handleSubmit(event)}}} onSubmit={handleSubmit}>
                 {form}
                 {authError && <div className={styles.error}><p>{authError}</p></div>}
                 {Object.keys(fieldErrors).length > 0 && (
@@ -179,7 +186,7 @@ function LoginCard({ newUser, setNewUser, ...props }) {
                     </ul>
                 )}
                 <p className={styles.textButton} onClick={newUser ? () => setNewUser(false) : () => setForgotPassword(true)}>{newUser ? 'Already have an account?' : 'Forgot Password?'}</p>
-                <button onClick={newUser ? handleRegister : handleLogin} className={styles.button}>
+                <button type='submit' className={styles.button}>
                     {newUser ? 'Register' : 'Login'}
                 </button>
             </form>
