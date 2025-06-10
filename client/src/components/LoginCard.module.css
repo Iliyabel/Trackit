@@ -1,0 +1,108 @@
+.logo {
+    height: 25px;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.card {
+    padding: 40px 60px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    background-color: var(--background-white);
+    background: 
+        linear-gradient(180deg, rgba(226, 226, 226, 0.63) 0%, rgba(255,255,255,1) 35%),
+        url(../assets/pattern1.jpg);
+    border-radius: 10px;
+    border: 1px solid var(--light-border);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    font-size: 1.2em;
+}
+
+.form {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.card input, .modal input {
+    width: 370px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.card .button {
+    margin-top: 20px;
+}
+
+.button {
+    border-radius: 20px;
+    padding: 10px 50px;
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+.invalidFields, .error {
+    color: var(--error);
+    font-size: 0.9em;
+}
+
+.error {
+    color: var(--error);
+    background-color: var(--error-background);
+    border: 1px solid var(--error);
+    padding: 10px;
+}
+
+.invalidFields {
+    align-self: flex-start;
+    margin-left: 20px;
+    max-width: 350px;
+}
+
+.errorInput {
+    border: 1px solid var(--error);
+    background-color: var(--error-background);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal input {
+    width: 350px;
+}
+
+button.inactive {
+    background: var(--disabled-background);
+    color: var(--disabled);
+    cursor: not-allowed;
+}
+
+.inactive:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.textButton {
+    color: grey;
+    font-size: .9em;
+    cursor: pointer;
+}
+
+.textButton:hover {
+    text-decoration: underline;
+}
+
