@@ -1,0 +1,13 @@
+.logoHeader {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+  background-color: var(--background-white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logoHeaderContainer {
+  display: flex;
+  height: 80%;
+  margin-left: 10px;
+}
