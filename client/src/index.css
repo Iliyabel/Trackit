@@ -15,11 +15,19 @@
   --secondary-color: #e27d4f;
   --tertiary-color:  #e6cb5c;
   --background-white: #f8f9fa;
+  --background-green: #3c6e71;
   --light-border: rgb(216, 216, 216);
+  --light-text: #697377;
   --error-background: #f8d7da;
   --error: #dc3545;
   --disabled-background: var(--light-border);
   --disabled: grey;
+
+  --status-applied: #1c1b5a;
+  --status-interviewing: #eeb200;
+  --status-accepted: #4CAF50;
+  --status-offer-received: #3d87dd;
+  --status-rejected: #e74c3c;
 }
 
 * {
