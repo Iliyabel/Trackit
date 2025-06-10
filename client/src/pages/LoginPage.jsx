@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../components/AuthProvider';
 import LoginCard from '../components/LoginCard';
 import styles from './LoginPage.module.css'
 
 function LoginPage() {
-    const [newUser, setNewUser] = useState(false);
+    const navigate = useNavigate();
 
-    function handleSignup() {
-        navigate('/register');
-    }
+    const [newUser, setNewUser] = useState(false);
+    const { user } = React.useContext(AuthContext);
+
+    useEffect(() => {
+        if(user.isAuthenticated) {
+            navigate('/dashboard');
+        }
+    }, [user.isAuthenticated]);
 
     return (
         <>
