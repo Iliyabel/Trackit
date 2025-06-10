@@ -1,0 +1,43 @@
+.applicationStatsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start; 
+  flex-wrap: wrap; 
+  gap: 20px; 
+  padding: 20px 0; 
+  border-top: 1.5px solid var(--light-border);
+  margin-top: 15px; 
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;  
+  text-align: center;
+  flex-grow: 1;
+  min-width: 200px;
+  padding: 10px 0;
+  border-radius: 15px;
+  background-color: var(--background-white); 
+  box-shadow: 0 1px 40px rgba(0,0,0,0.05);
+  border: 1.5px solid var(--light-border);
+}
+
+.statCount {
+  font-size: 2.5em;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.statLabel {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: var(--light-text); 
+  margin-top: 5px;
+}
+
+.statTotal .statCount { color: var(--status-applied); } 
+.statInterviewing .statCount { color: var(--status-interviewing); } 
+.statOffer .statCount { color: var(--status-offer-received); } 
+.statAccepted .statCount { color: var(--status-accepted); }
+.statRejected .statCount { color: var(--status-rejected); } 
