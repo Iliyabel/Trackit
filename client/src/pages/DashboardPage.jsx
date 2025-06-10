@@ -213,12 +213,9 @@ function DashboardPage() {
                                             </span>
                                         </td>
                                         <td>{app.salary || 'N/A'}</td>
-                                        <td>{app.url ? <a href={app.url.startsWith('http') ? app.url : `https://${app.url}`} target="_blank" rel="noopener noreferrer" style={{color: '#88C0D0'}}>Link</a> : 'N/A'}</td>
-                                        <td 
-                                            onClick={() => handleNotesClick(app)} 
-                                            style={{ cursor: 'pointer', color: '#88C0D0', textDecoration: 'underline' }}
-                                            >
-                                                {app.notes ? 'View/Edit' : 'Add Notes'}
+                                        <td className='url-cell'>{app.url ? <a href={app.url.startsWith('http') ? app.url : `https://${app.url}`} target="_blank" rel="noopener noreferrer">Link</a> : 'N/A'}</td>
+                                        <td className='notes-cell' onClick={() => handleNotesClick(app)}>
+                                            {app.notes ? 'View/Edit' : 'Add Notes'}
                                         </td>
 
                                     </tr>
@@ -239,11 +236,8 @@ function DashboardPage() {
             </Modal>
 
             {selectedApp && ( // Only show if a job appication is selected
-                <Modal 
-                    isOpen={isViewEditModalOpen} 
-                    onClose={handleCloseViewEditModal} 
-                    title={isEditModeActive ? "Edit Application Details" : "View Application Details"}
-                >
+                <Modal isOpen={isViewEditModalOpen} onClose={handleCloseViewEditModal} 
+                    title={isEditModeActive ? "Edit Application Details" : "View Application Details"}>
                     <ApplicationForm
                         key={selectedApp.id + (isEditModeActive ? '-edit' : '-view')} 
                         initialData={editFormData} // Pass the editable form data
@@ -270,13 +264,10 @@ function DashboardPage() {
             )}
             {isNotesModalOpen && (
             <Modal isOpen={isNotesModalOpen} onClose={() => setIsNotesModalOpen(false)} title="Notes">
-                <NotesModal 
-                notes={editingNotes}
-                onChange={setEditingNotes}
-                />
+                <NotesModal notes={editingNotes} onChange={setEditingNotes}/>
                 <div className="form-actions">
-                <button className="button-primary" onClick={handleSaveNotes}>Save Notes</button>
-                <button className="button-secondary" onClick={() => setIsNotesModalOpen(false)}>Cancel</button>
+                    <button className="button-primary" onClick={handleSaveNotes}>Save Notes</button>
+                    <button className="button-secondary" onClick={() => setIsNotesModalOpen(false)}>Cancel</button>
                 </div>
             </Modal>
             )}
