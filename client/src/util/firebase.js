@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-
+// Public Firebase configuration
+// DOES NOT CONTAIN SENSITIVE INFORMATION
 const firebaseConfig = {
   apiKey: "AIzaSyBdxqVz6asyIhiuTyji7TzjCbelBGqqTIc",
   authDomain: "application-tracker-df0ea.firebaseapp.com",
