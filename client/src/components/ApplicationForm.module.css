@@ -58,11 +58,10 @@
   font-weight: bold;
   border: none;
   padding: 8px 15px;
-  font-size: 14px;
 }
 
 .secondaryButton {
-    background-color: white;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+  background-color: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }

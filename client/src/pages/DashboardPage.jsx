@@ -217,17 +217,17 @@ function DashboardPage() {
                         showActionButtons={false} // External buttons for this modal
                     />
                     
-                    <div className="form-actions" >
+                    <div className={styles.formActions} >
                         {!isEditModeActive ? (
                             <>
-                                <button type="button" className="button-primary" onClick={toggleEditMode}>Edit</button>
-                                <button type="button" className="button-delete" onClick={handleDeleteApplication}>Delete</button>
-                                <button type="button" className="button-secondary" onClick={handleCloseViewEditModal}>Close</button>
+                                <button type="button" className={styles.primaryButton} onClick={toggleEditMode}>Edit</button>
+                                <button type="button" className={styles.secondaryButtonDelete} onClick={handleDeleteApplication}>Delete</button>
+                                <button type="button" className={styles.secondaryButton} onClick={handleCloseViewEditModal}>Close</button>
                             </>
                         ) : (
                             <>
-                                <button type="button" className="button-primary" onClick={handleSaveChanges}>Save Changes</button>
-                                <button type="button" className="button-secondary" onClick={toggleEditMode}>Cancel</button>
+                                <button type="button" className={styles.primaryButton} onClick={handleSaveChanges}>Save Changes</button>
+                                <button type="button" className={styles.secondaryButton} onClick={toggleEditMode}>Cancel</button>
                             </>
                         )}
                     </div>
@@ -236,9 +236,9 @@ function DashboardPage() {
             {isNotesModalOpen && (
             <Modal isOpen={isNotesModalOpen} onClose={() => setIsNotesModalOpen(false)} title="Notes">
                 <NotesModal notes={editingNotes} onChange={setEditingNotes}/>
-                <div className="form-actions">
-                    <button className="button-primary" onClick={handleSaveNotes}>Save Notes</button>
-                    <button className="button-secondary" onClick={() => setIsNotesModalOpen(false)}>Cancel</button>
+                <div className={styles.formActions}>
+                    <button className={styles.primaryButton} onClick={handleSaveNotes}>Save Notes</button>
+                    <button className={styles.secondaryButton} onClick={() => setIsNotesModalOpen(false)}>Cancel</button>
                 </div>
             </Modal>
             )}
