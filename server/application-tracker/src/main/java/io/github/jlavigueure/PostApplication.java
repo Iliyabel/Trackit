@@ -59,6 +59,7 @@ public class PostApplication implements RequestHandler<APIGatewayProxyRequestEve
         String applicationId = input.getHeaders().get(HEADER_APPLICATION_ID);
         if (userId == null || userId.isEmpty()) {
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders())
                 .withStatusCode(ERROR_CODE_BAD_REQUEST)
                 .withBody(HEADER_USER_ID + " header is required");
         }
@@ -87,14 +88,18 @@ public class PostApplication implements RequestHandler<APIGatewayProxyRequestEve
             
             // Return a success response
             return new APIGatewayProxyResponseEvent()
-                .withStatusCode(OK);
+                .withHeaders(corsHeaders())
+                .withStatusCode(OK)
+                .withBody(objectMapper.writeValueAsString(newApplication));
 
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders())
                 .withStatusCode(ERROR_CODE_BAD_REQUEST)
                 .withBody("Invalid JSON format: " + e.getMessage());
         } catch (Exception e) {
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders()) 
                 .withStatusCode(ERROR_CODE_INTERNAL_SERVER_ERROR)
                 .withBody("An error occurred while processing the request: " + e.getMessage());
         }

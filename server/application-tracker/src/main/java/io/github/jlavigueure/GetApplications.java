@@ -61,7 +61,7 @@ public class GetApplications implements RequestHandler<APIGatewayProxyRequestEve
         String applicationId = (input.getQueryStringParameters() != null) ? input.getQueryStringParameters().get(HEADER_APPLICATION_ID) : null;
 
         if (applicationId != null && applicationId.toLowerCase().equals("profile")){
-            return new APIGatewayProxyResponseEvent()
+            return new APIGatewayProxyResponseEvent().withHeaders(corsHeaders())
                     .withStatusCode(ERROR_CODE_BAD_REQUEST)
                     .withBody("Cannot query for profile applications using this endpoint. Use the /profiles endpoint instead.");
         }
@@ -102,6 +102,7 @@ public class GetApplications implements RequestHandler<APIGatewayProxyRequestEve
             response = dynamoDbClient.query(request);
         } catch (Exception e) {
             return new APIGatewayProxyResponseEvent()
+                    .withHeaders(corsHeaders())
                     .withStatusCode(ERROR_CODE_INTERNAL_SERVER_ERROR)
                     .withBody("Error querying DynamoDB: " + e.getMessage());
         }
@@ -110,6 +111,7 @@ public class GetApplications implements RequestHandler<APIGatewayProxyRequestEve
         // If no items are found, return 404
         if(response.items().isEmpty()) {
             return new APIGatewayProxyResponseEvent()
+                    .withHeaders(corsHeaders())
                     .withStatusCode(ERROR_CODE_NOT_FOUND)
                     .withBody("No applications found for user: " + userId);
         }
@@ -126,11 +128,12 @@ public class GetApplications implements RequestHandler<APIGatewayProxyRequestEve
             String jsonResponse = objectMapper.writeValueAsString(convertedItems);
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(OK)
-                    .withHeaders(Map.of("Content-Type", "application/json"))
+                    .withHeaders(corsHeaders())
                     .withBody(jsonResponse);
         } catch (Exception e) {
             // If there's an error converting to JSON, return 500
             return new APIGatewayProxyResponseEvent()
+                    .withHeaders(corsHeaders())
                     .withStatusCode(ERROR_CODE_INTERNAL_SERVER_ERROR)
                     .withBody("Error processing request: " + e.getMessage());
         }

@@ -1,6 +1,6 @@
-
 package io.github.jlavigueure;
 
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -44,5 +44,13 @@ public class DependencyFactory {
 
     public static DynamoDbClient dynamoDbClient() {
         return dynamoDbClient;
+    }
+
+    public static Map<String, String> corsHeaders() {
+        return Map.of(
+            "Access-Control-Allow-Origin", "*",
+            "Access-Control-Allow-Methods", "GET, POST, OPTIONS",
+            "Access-Control-Allow-Headers", "Content-Type, Authorization, User-Id, Application-Id"
+        );
     }
 }

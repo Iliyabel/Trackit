@@ -69,21 +69,25 @@ public class GetProfile implements RequestHandler<APIGatewayProxyRequestEvent, A
 
             if (item == null || item.isEmpty()) {
                 return new APIGatewayProxyResponseEvent()
+                    .withHeaders(corsHeaders())
                     .withStatusCode(ERROR_CODE_NOT_FOUND)
                     .withBody("Profile not found for user: " + userId);
             }
 
             // Return the profile as a JSON response
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders())
                 .withStatusCode(OK)
                 .withBody(objectMapper.writeValueAsString(item));
 
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders())
                 .withStatusCode(ERROR_CODE_INTERNAL_SERVER_ERROR)
                 .withBody("JSON parsing error: " + e.getMessage());
         } catch (Exception e) {
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders())
                 .withStatusCode(ERROR_CODE_INTERNAL_SERVER_ERROR)
                 .withBody("An error occurred while processing the request: " + e.getMessage());
         }

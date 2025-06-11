@@ -59,6 +59,7 @@ public class PostProfile implements RequestHandler<APIGatewayProxyRequestEvent, 
             );
             if (newProfile == null || newProfile.isEmpty()) {
                 return new APIGatewayProxyResponseEvent()
+                    .withHeaders(corsHeaders())
                     .withStatusCode(ERROR_CODE_BAD_REQUEST)
                     .withBody("Request body is required");
             }
@@ -76,14 +77,17 @@ public class PostProfile implements RequestHandler<APIGatewayProxyRequestEvent, 
                 .build());
 
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders())
                 .withStatusCode(OK);
 
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders())
                 .withStatusCode(ERROR_CODE_BAD_REQUEST)
                 .withBody("Invalid JSON format: " + e.getMessage());
         } catch (Exception e) {
             return new APIGatewayProxyResponseEvent()
+                .withHeaders(corsHeaders())
                 .withStatusCode(ERROR_CODE_INTERNAL_SERVER_ERROR)
                 .withBody("An error occurred while processing the request: " + e.getMessage());
         }
