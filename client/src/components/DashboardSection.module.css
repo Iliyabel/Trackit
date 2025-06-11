@@ -1,0 +1,33 @@
+.dashboardSection {
+  background-color: var(--background-white);
+  border-radius: 20px;
+  padding: 20px 25px;
+  margin-top: 30px;
+  width: 80%;
+  max-width: 1200px;
+  min-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: var(--light-text);
+}
+
+.dashboardSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboardSectionTitle {
+  font-size: 1.5em;
+  color: var(--secondary-color);
+  margin: 0;
+}
+
+.sectionPrimaryButton {
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+}

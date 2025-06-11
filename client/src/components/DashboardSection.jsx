@@ -1,23 +1,23 @@
 import React from 'react';
+import styles from './DashboardSection.module.css'; 
 
 function DashboardSection({ title, children, onAdd }) {
   return (
-    <div className="dashboard-section">
-      <div className="dashboard-section-header"> 
-        {title && <h2 className="dashboard-section-title">{title}</h2>}
+    <div className={styles.dashboardSection}>
+      <div className={styles.dashboardSectionHeader}> 
+        {title && <h2 className={styles.dashboardSectionTitle}>{title}</h2>}
 
         {onAdd && (
-          <button onClick={onAdd} className="button-primary">
+          <button onClick={onAdd} className={styles.sectionPrimaryButton}>
             + Add Job Application
           </button>
         )}
       </div>
-      <div className="dashboard-section-content">
+      <div>
         {children}
       </div>
     </div>
   );
 }
-
 
 export default DashboardSection;
