@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './LoginCard.module.css';
 import Modal from './Modal.jsx';
 import { AuthContext } from './AuthProvider.jsx';
+import { postUserProfile } from '../util/ApiProvider.js'; 
 
 function LoginCard({ newUser, setNewUser, ...props }) {
     const navigate = useNavigate();
@@ -68,6 +69,11 @@ function LoginCard({ newUser, setNewUser, ...props }) {
         if(!validateFields()) return;
         try {
             await register(email, password);
+            await postUserProfile({
+                firstName: firstName,
+                lastName: lastName,
+                email: email
+            });
         } catch (error) {
             if( error.code === 'auth/email-already-in-use') {
                 setAuthError('Email already in use. Please use a different email.');
