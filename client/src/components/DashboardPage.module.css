@@ -9,3 +9,15 @@
   align-items: center;
   padding-bottom: 40px;
 }
+
+.sortArrow {
+  display: inline-block; 
+  margin-left: 5px; 
+  color: #b0bec5; 
+  font-size: 0.8em;    
+  transition: color 0.2s ease; 
+}
+
+.active {
+  color: var(--secondary-color); 
+}

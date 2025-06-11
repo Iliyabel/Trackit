@@ -1,0 +1,34 @@
+.tableWrapper {
+  overflow-x: auto; 
+}
+
+.statusCell {
+  padding: 5px 8px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: var(--background-white);
+  font-size: 0.8em;
+  min-width: 100px; 
+  display: inline-block; 
+}
+
+.urlCell:link {
+  color: #88C0D0;
+}
+
+.urlCell:visited {
+  color: #88C0D0;
+}
+
+.notesCell {
+  cursor: pointer;
+  color: #88C0D0;
+  text-decoration: underline;
+}
+
+.statusapplied { background-color: var(--status-applied); }
+.statusinterviewing { background-color: var(--status-interviewing); }
+.statusaccepted { background-color: var(--status-accepted); }
+.statusofferreceived { background-color: var(--status-offer-received); }
+.statusrejected { background-color: var(--status-rejected); }

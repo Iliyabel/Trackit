@@ -4,6 +4,7 @@ import Modal from '../components/Modal';
 import ApplicationForm from '../components/ApplicationForm';
 import ApplicationStats from '../components/ApplicationStats';
 import ApplicationFilters from '../components/ApplicationFilters';
+import ApplicationsTable from '../components/ApplicationsTable';
 import NotesModal from '../components/NotesModal';
 import Header from '../components/Header';
 import { filterApplications, sortApplications } from '../util/filter';
@@ -153,7 +154,7 @@ function DashboardPage() {
         const isActive = sortConfig.key === key;
         const arrow = sortConfig.direction === 'ascending' ? '▼' : '▲';
 
-        return <span className={`sort-arrow ${isActive ? 'active' : ''}`}>{isActive ? arrow : '▼'}</span>;
+        return <span className={`${styles.sortArrow} ${isActive ? styles.active || '' : ''}`}>{isActive ? arrow : '▼'}</span>;
     };
 
     return (
@@ -184,43 +185,14 @@ function DashboardPage() {
                         statusOrder={statusOrder}
                     />
 
-                    <div className="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th onClick={() => requestSort('position')}>Job Position{getSortIndicator('position')}</th>
-                                    <th onClick={() => requestSort('company')}>Company{getSortIndicator('company')}</th>
-                                    <th onClick={() => requestSort('location')}>Location{getSortIndicator('location')}</th>
-                                    <th onClick={() => requestSort('date')}>Date{getSortIndicator('date')}</th>
-                                    <th onClick={() => requestSort('status')}>Status{getSortIndicator('status')}</th>
-                                    <th>Salary</th>
-                                    <th>Url</th>
-                                    <th>Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {processedApplications.map(app => (
-                                    <tr key={app.id} onClick={() => handleTableRowClick(app)}>
-                                        <td>{app.position || 'N/A'}</td>
-                                        <td>{app.company || 'N/A'}</td>
-                                        <td>{app.location || 'N/A'}</td>
-                                        <td>{app.date || 'N/A'}</td>
-                                        <td>
-                                            <span className={`status-cell status-${app.status.toLowerCase().replace(/\s+/g, '-')}`}>
-                                                {app.status || 'N/A'}
-                                            </span>
-                                        </td>
-                                        <td>{app.salary || 'N/A'}</td>
-                                        <td className='url-cell'>{app.url ? <a href={app.url.startsWith('http') ? app.url : `https://${app.url}`} target="_blank" rel="noopener noreferrer">Link</a> : 'N/A'}</td>
-                                        <td className='notes-cell' onClick={() => handleNotesClick(app)}>
-                                            {app.notes ? 'View/Edit' : 'Add Notes'}
-                                        </td>
+                    <ApplicationsTable
+                        processedApplications={processedApplications}
+                        requestSort={requestSort}
+                        getSortIndicator={getSortIndicator}
+                        handleTableRowClick={handleTableRowClick}
+                        handleNotesClick={handleNotesClick}
+                    />
 
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
                     {processedApplications.length === 0 && applications.length > 0 && <p>No applications match your current filters.</p>}
                     {applications.length === 0 && <p>No applications added yet. Click "+ Add New" to start!</p>}
                 </DashboardSection>
