@@ -1,0 +1,25 @@
+.filtersContainer {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0; 
+  flex-wrap: wrap; 
+}
+
+.filtersContainer input[type="text"],
+.filtersContainer select {
+  padding: 8px 10px;
+  border: 2px solid var(--light-border);
+  border-radius: 20px;
+  font-size: 0.9em;
+  flex-grow: 1; 
+  min-width: 150px; 
+  background-color: white;
+  color: var(--light-text)
+}
+
+.filtersContainer input:focus,
+.filtersContainer select:focus {
+  border: 2px solid var(--secondary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(226, 125, 79, 0.2);
+}
