@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { filterApplications, sortApplications } from '../util/filter';
 import DashboardSection from '../components/DashboardSection';
 import Modal from '../components/Modal';
 import ApplicationForm from '../components/ApplicationForm';
@@ -7,8 +8,7 @@ import ApplicationFilters from '../components/ApplicationFilters';
 import ApplicationsTable from '../components/ApplicationsTable';
 import NotesModal from '../components/NotesModal';
 import Header from '../components/Header';
-import { filterApplications, sortApplications } from '../util/filter';
-import styles from '../components/DashboardPage.module.css';
+import styles from './DashboardPage.module.css';
 
 function DashboardPage() {
     const [applications, setApplications] = useState([
