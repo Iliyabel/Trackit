@@ -23,7 +23,6 @@ function AuthProvider({ children }) {
                     isAuthenticated: false,
                     token: null
                 });
-                navigate('/login');
                 return;
             }
             user.getIdToken().then((token) => {

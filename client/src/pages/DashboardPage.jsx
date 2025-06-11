@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useContext } from 'react';
 import { filterApplications, sortApplications } from '../util/filter';
 import { getApplications, postApplication, deleteApplication } from '../util/ApiProvider.js';
 import { AuthContext } from '../components/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 import DashboardSection from '../components/DashboardSection';
 import Modal from '../components/Modal';
 import ApplicationForm from '../components/ApplicationForm';
@@ -14,6 +15,8 @@ import Footer from '../components/Footer';
 import styles from './DashboardPage.module.css';
 
 function DashboardPage() {
+    const navigate = useNavigate();
+
     const [applications, setApplications] = useState([]);
     const [error, setError] = useState(null); 
 
@@ -23,9 +26,9 @@ function DashboardPage() {
     // Fetch applications when the component mounts
     useEffect(() => {
         const fetchInitialApplications = async () => {
-            if (!user || !user.token) { 
+            if (!user.isAuthenticated) { 
                 setError("User not authenticated. Cannot fetch applications.");
-                setApplications([]);
+                navigate('/login'); // Redirect to login if not authenticated
                 return;
             }
             try {
