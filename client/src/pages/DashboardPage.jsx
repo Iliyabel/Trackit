@@ -242,7 +242,8 @@ function DashboardPage() {
                 </div>
             </Modal>
             )}
-            <Footer></Footer>
+            <div style={{ height: '2rem' }} />
+            <Footer />
         </div>
     );
 }
