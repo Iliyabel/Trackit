@@ -27,16 +27,16 @@ function ApplicationsTable({
                         const statusClassName = `status${app.status.toLowerCase().replace(/\s+/g, '').replace(/-/g, '')}`;
                         return (
                             <tr key={index} onClick={() => handleTableRowClick(app)}>
-                                <td>{app.position || 'N/A'}</td>
-                                <td>{app.company || 'N/A'}</td>
-                                <td>{app.location || 'N/A'}</td>
-                                <td>{app.date || 'N/A'}</td>
+                                <td>{app.position || '-'}</td>
+                                <td>{app.company || '-'}</td>
+                                <td>{app.location || '-'}</td>
+                                <td>{app.date || '-'}</td>
                                 <td>
                                     <span className={`${styles.statusCell} ${styles[statusClassName] || ''}`}>
-                                        {app.status || 'N/A'}
+                                        {app.status || '-'}
                                     </span>
                                 </td>
-                                <td>{app.salary || 'N/A'}</td>
+                                <td>{app.salary || '-'}</td>
                                 <td>
                                     {app.url ? (
                                         <a className={styles.urlCell}
@@ -45,9 +45,9 @@ function ApplicationsTable({
                                             rel="noopener noreferrer"
                                             onClick={(e) => e.stopPropagation()} // Prevent row click when clicking link
                                         >
-                                            Link
+                                            <img src="src/assets/linkIcon.png" alt="Link Icon" />
                                         </a>
-                                    ) : 'N/A'}
+                                    ) : '-'}
                                 </td>
                                 <td 
                                     className={styles.notesCell} 
