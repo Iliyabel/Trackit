@@ -1,4 +1,4 @@
-let apiUrl = import.meta.env.DB_API_URL;
+let apiUrl = import.meta.env.VITE_DB_API_URL;
 let endpoints = {
     applications: `${apiUrl}/applications`,
     profiles: `${apiUrl}/profiles`,
@@ -13,7 +13,7 @@ let endpoints = {
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
 function getApplications(authToken, applicationId = null) {
-    console.log(`Fetching applications from ${apiUrl}/applications with token: ${authToken}`);
+    console.log("Fetching applications");
     let url = endpoints.applications;
     if (applicationId) url += `?Application-Id=${applicationId}`; // Append Application-Id if provided
 
@@ -37,6 +37,7 @@ function getApplications(authToken, applicationId = null) {
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
 function postApplication(authToken, application) {
+    console.log("Posting application");
     return fetch(`${apiUrl}/applications`, {
         method: 'POST',
         headers: {
@@ -59,6 +60,7 @@ function postApplication(authToken, application) {
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
 function getUserProfile(authToken) {
+    console.log("Fetching user profile");
     return fetch(endpoints.profiles, {
         headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -79,6 +81,7 @@ function getUserProfile(authToken) {
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
 function postUserProfile(authToken, profile) {
+    console.log("Posting user profile");
     return fetch(endpoints.profiles, {
         method: 'POST',
         headers: {
