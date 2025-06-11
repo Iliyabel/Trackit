@@ -13,6 +13,14 @@ let endpoints = {
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
 function getApplications(authToken, applicationId = null) {
+    return retry(() => _getApplications(authToken, applicationId), 3, 300)
+        .catch(error => {
+            console.error("Failed to fetch applications after retries:", error);
+            throw error;
+        });
+}
+
+function _getApplications(authToken, applicationId = null) {
     console.log("Fetching applications");
     let url = endpoints.applications;
     if (applicationId) url += `?Application-Id=${applicationId}`; // Append Application-Id if provided
@@ -37,6 +45,14 @@ function getApplications(authToken, applicationId = null) {
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
 function postApplication(authToken, application) {
+    return retry(() => _postApplication(authToken, application), 3, 300)
+        .catch(error => {
+            console.error("Failed to post application after retries:", error);
+            throw error;
+        });
+}
+
+function _postApplication(authToken, application) {
     console.log("Posting application");
     return fetch(`${apiUrl}/applications`, {
         method: 'POST',
@@ -49,7 +65,7 @@ function postApplication(authToken, application) {
     .then(response => {
         if (!response.ok) throw new Error(`${response.status}`);
         return response.json();
-    });
+    })
 }
 
 /**
@@ -60,6 +76,14 @@ function postApplication(authToken, application) {
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
 function getUserProfile(authToken) {
+    return retry(() => _getUserProfile(authToken), 3, 300)
+        .catch(error => {
+            console.error("Failed to fetch user profile after retries:", error);
+            throw error;
+        });
+}
+
+function _getUserProfile(authToken) {
     console.log("Fetching user profile");
     return fetch(endpoints.profiles, {
         headers: {
@@ -81,18 +105,40 @@ function getUserProfile(authToken) {
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
 function postUserProfile(authToken, profile) {
+    return retry(() => _postUserProfile(authToken, profile), 3, 300)
+        .catch(error => {
+            console.error("Failed to post user profile after retries:", error);
+            throw error;
+        });
+}
+
+function _postUserProfile(authToken, profile) {
     console.log("Posting user profile");
     return fetch(endpoints.profiles, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(profile)
     })
     .then(response => {
         if (!response.ok) throw new Error(`${response.status}`);
-        return response.json();
     });
+}
+
+async function retry(func, retries = 3, base_delay = 300) {
+    let finalError;
+    for (let i = 0; i < retries; i++) {
+        try {
+            return await func();
+        } catch (error) {
+            finalError = error;
+            console.warn(`Retrying... (${i + 1}/${retries})`);
+            await new Promise(resolve => setTimeout(resolve, base_delay * (i + 1)));
+        }
+    }
+    throw finalError;
 }
 
 export { getApplications, postApplication, getUserProfile, postUserProfile };
