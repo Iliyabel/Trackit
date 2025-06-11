@@ -23,11 +23,11 @@
 }
 
 .sectionPrimaryButton {
-    border-radius: 20px;
-    background-color: var(--secondary-color);
-    color: white;
-    font-weight: bold;
-    border: none;
-    padding: 8px 15px;
-    font-size: 14px;
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
 }
