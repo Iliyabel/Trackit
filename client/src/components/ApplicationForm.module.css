@@ -1,0 +1,67 @@
+.applicationForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroupRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.applicationForm .formGroup {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 18px;
+}
+
+.applicationForm label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: var(--light-text);
+  margin: auto 10px auto 0;
+}
+
+.applicationForm input[type="text"],
+.applicationForm input[type="date"],
+.applicationForm select,
+.applicationForm textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--light-border);
+  border-radius: 6px;
+  color: var(--light-text);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+  font-size: 0.9em;
+}
+
+.applicationForm input:focus,
+.applicationForm select:focus,
+.applicationForm textarea:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+}
+
+.formActions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.primaryButton {
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+}
+
+.secondaryButton {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}

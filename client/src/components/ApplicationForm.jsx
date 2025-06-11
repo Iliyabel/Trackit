@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './ApplicationForm.module.css';
 
 function ApplicationForm({ 
     onSubmit, 
@@ -45,32 +46,32 @@ function ApplicationForm({
 
 
     return (
-        <form onSubmit={handleSubmit} className="application-form">
-            <div className='form-group-row'>
+        <form onSubmit={handleSubmit} className={styles.applicationForm}>
+            <div className={styles.formGroupRow}>
                 <div> {/* Column 1 */}
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="position">Position</label>
                         <input type="text" id="position" name="position" value={displayData.position || ''} onChange={handleChange} readOnly={isReadOnly} required />
                     </div>
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="company">Company</label>
                         <input type="text" id="company" name="company" value={displayData.company || ''} onChange={handleChange} readOnly={isReadOnly} required />
                     </div>
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="location">Location</label>
                         <input type="text" id="location" name="location" value={displayData.location || ''} onChange={handleChange} readOnly={isReadOnly} />
                     </div>
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="salary">Salary</label>
                         <input type="text" id="salary" name="salary" value={displayData.salary || ''} onChange={handleChange} readOnly={isReadOnly} />
                     </div>
                 </div>
                 <div> {/* Column 2 */}
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="date">Date Applied</label>
                         <input type="date" id="date" name="date" value={displayData.date || ''} onChange={handleChange} readOnly={isReadOnly} />
                     </div>
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="status">Status</label>
                         <select id="status" name="status" value={displayData.status || 'To Apply'} onChange={handleChange} disabled={isReadOnly}>
                             <option value="To Apply">To Apply</option>
@@ -81,11 +82,11 @@ function ApplicationForm({
                             <option value="Accepted">Accepted</option>
                         </select>
                     </div>
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="url">URL</label>
                         <input type="text" id="url" name="url" value={displayData.url || ''} onChange={handleChange} readOnly={isReadOnly} placeholder="https://example.com" />
                     </div>
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="notes">Notes</label>
                         <textarea id="notes" name="notes" value={displayData.notes || ''} onChange={handleChange} readOnly={isReadOnly} rows="3"></textarea>
                     </div>
@@ -93,9 +94,9 @@ function ApplicationForm({
             </div>
 
             {showActionButtons && (
-                <div className="form-actions">
-                    <button type="submit" className="button-primary">Add Application</button>
-                    <button type="button" onClick={onCancel} className="button-secondary">Cancel</button>
+                <div className={styles.formActions}>
+                    <button type="submit" className={styles.primaryButton}>Add Application</button>
+                    <button type="button" onClick={onCancel} className={styles.secondaryButton}>Cancel</button>
                 </div>
             )}
         </form>
