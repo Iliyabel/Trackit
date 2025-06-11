@@ -23,10 +23,10 @@ function ApplicationsTable({
                     </tr>
                 </thead>
                 <tbody>
-                    {processedApplications.map(app => {
+                    {processedApplications.map((app, index) => {
                         const statusClassName = `status${app.status.toLowerCase().replace(/\s+/g, '').replace(/-/g, '')}`;
                         return (
-                            <tr key={app.id} onClick={() => handleTableRowClick(app)}>
+                            <tr key={index} onClick={() => handleTableRowClick(app)}>
                                 <td>{app.position || 'N/A'}</td>
                                 <td>{app.company || 'N/A'}</td>
                                 <td>{app.location || 'N/A'}</td>

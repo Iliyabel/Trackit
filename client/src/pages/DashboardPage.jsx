@@ -1,5 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useContext } from 'react';
 import { filterApplications, sortApplications } from '../util/filter';
+import { getApplications, postApplication, getUserProfile, postUserProfile } from '../util/ApiProvider.js';
+import { AuthContext } from '../components/AuthProvider';
 import DashboardSection from '../components/DashboardSection';
 import Modal from '../components/Modal';
 import ApplicationForm from '../components/ApplicationForm';
@@ -8,23 +10,63 @@ import ApplicationFilters from '../components/ApplicationFilters';
 import ApplicationsTable from '../components/ApplicationsTable';
 import NotesModal from '../components/NotesModal';
 import Header from '../components/Header';
-import styles from './DashboardPage.module.css';
 import Footer from '../components/Footer';
+import styles from './DashboardPage.module.css';
 
 function DashboardPage() {
-    const [applications, setApplications] = useState([
-        // Filler data
-        { id: 1, position: 'Software Engineer', company: 'Tech Corp', location: 'Remote', salary: '$120k', date: '2024-05-01', status: 'Applied', url: 'techcorp.com/careers', notes: 'First round interview scheduled.' },
-        { id: 2, position: 'Data Analyst', company: 'Alpha Inc', location: 'New York', salary: '$130k', date: '2024-05-15', status: 'Interviewing', url: 'alpha.com', notes: 'Second round next week.' },
-        { id: 3, position: 'UX Designer', company: 'Beta LLC', location: 'San Francisco', salary: '$110k', date: '2024-04-20', status: 'Offer-Received', url: 'beta.com', notes: 'Negotiating salary.' },
-        { id: 4, position: 'Project Manager', company: 'Gamma Co', location: 'Remote', salary: '$140k', date: '2024-03-10', status: 'Rejected', url: 'gamma.com', notes: 'Not a good fit.' },
-        { id: 5, position: 'Frontend Developer', company: 'Delta Solutions', location: 'Austin', salary: '$125k', date: '2024-05-20', status: 'Accepted', url: 'delta.com', notes: 'Start date June 1st.' },
-        { id: 6, position: 'Backend Developer', company: 'Tech Corp', location: 'Remote', salary: '$135k', date: '2024-04-10', status: 'Applied', url: 'techcorp.com/careers', notes: 'Waiting for response.' },
-    ]);
+    const [applications, setApplications] = useState([]);
+    const [error, setError] = useState(null); 
+
+    const { user } = useContext(AuthContext);
+
+
+    // Fetch applications when the component mounts
+    useEffect(() => {
+        const fetchInitialApplications = async () => {
+            if (!user || !user.token) { 
+                setError("User not authenticated. Cannot fetch applications.");
+                setApplications([]);
+                return;
+            }
+            try {
+                setError(null);
+                // Pass the user's token to the API call
+                const data = await getApplications(user.token);
+                if (Array.isArray(data)) {
+                    setApplications(data);
+                } else {
+                    console.error("Received non-array data from getApplications:", data);
+                    setApplications([]);
+                    setError("Failed to load applications: Invalid data format from server.");
+                }
+            } catch (err) {
+                console.error("Error fetching applications:", err);
+                let errorMessage = "An unknown error occurred while fetching applications.";
+                if (err.message === '401' || err.message === '403') {
+                    errorMessage = "Authentication failed. Please log in again.";
+                } else if (err.message === '404') {
+                    errorMessage = "Could not find applications. The API endpoint might be incorrect or no data exists.";
+                } else if (err.message) {
+                    errorMessage = err.message;
+                }
+                setError(errorMessage);
+                setApplications([]);
+            } 
+        };
+
+        if (user && user.token) { 
+            fetchInitialApplications();
+        } else {
+            setApplications([]); 
+        }
+
+        fetchInitialApplications();
+    }, [user]); 
 
     // Modal States
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isViewEditModalOpen, setIsViewEditModalOpen] = useState(false);
+    const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
 
     // Selected Appication and Edit Mode States
     const [selectedApp, setSelectedApp] = useState(null); // For viewing/editing
@@ -37,9 +79,8 @@ function DashboardPage() {
     const [filterLocation, setFilterLocation] = useState('');
     const [filterStatus, setFilterStatus] = useState('All');
 
-    //Notes States
-    const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
-    const [editingNotes, setEditingNotes] = useState('');
+    // Notes States
+    const [editingNotes, setEditingNotes] = useState(''); // set notes text
     const [notesAppId, setNotesAppId] = useState(null);
 
 
@@ -55,12 +96,22 @@ function DashboardPage() {
     const handleOpenAddModal = () => setIsAddModalOpen(true);
     const handleCloseAddModal = () => setIsAddModalOpen(false);
 
-    const handleSaveNewApplication = (newAppData) => {
-        setApplications(prevApps => [
-            ...prevApps,
-            { ...newAppData, id: prevApps.length > 0 ? Math.max(...prevApps.map(app => app.id)) + 1 : 1 }
-        ]);
-        handleCloseAddModal();
+    const handleSaveNewApplication = async (newApplicationDataFromForm) => {
+        if (!user || !user.token) {
+            setError("Authentication required to save application."); 
+            return;
+        }
+        
+        try {
+            const savedAppFromServer = await postApplication(user.token, newApplicationDataFromForm);
+            setApplications(prevApps => [...prevApps, savedAppFromServer]);
+            
+            handleCloseAddModal();
+        } catch (apiError) {
+            console.error("Failed to save new application:", apiError);
+            // Update a state to show an error message to the user
+            setError(apiError.message || "Could not save application. Please try again."); 
+        } 
     };
 
 
@@ -91,31 +142,44 @@ function DashboardPage() {
         setEditFormData(prevData => ({ ...prevData, [name]: value }));
     };
 
-    const handleSaveChanges = () => {
-        setApplications(prevApps => 
-            prevApps.map(app => app.id === selectedApp.id ? { ...editFormData } : app)
-        );
-        setSelectedApp({...editFormData}); // Update selectedApp to reflect saved changes
-        setIsEditModeActive(false); // Switch back to view mode
+    const handleSaveChanges = async () => {
+        if (!user || !user.token) {
+            setError("Authentication required to save application."); 
+            return;
+        }
+
+        try {
+            const updatedAppFromServer = await postApplication(user.token, editFormData);
+
+            setApplications(prevApps => 
+                prevApps.map(app => app.applicationId === updatedAppFromServer.applicationId ? updatedAppFromServer : app)
+            );
+            setSelectedApp(updatedAppFromServer); // Update selectedApp to reflect saved changes
+            handleCloseAddModal();
+        } catch (apiError) {
+            console.error("Failed to save new application:", apiError);
+            // Update a state to show an error message to the user
+            setError(apiError.message || "Could not save application. Please try again."); 
+        } 
     };
 
     const handleDeleteApplication = () => {
         if (selectedApp && window.confirm(`Are you sure you want to delete the application for "${selectedApp.position}" at "${selectedApp.company}"?`)) {
-            setApplications(prevApps => prevApps.filter(app => app.id !== selectedApp.id));
+            setApplications(prevApps => prevApps.filter(app => app.applicationId !== selectedApp.applicationId));
             handleCloseViewEditModal();
         }
     };
 
     const handleNotesClick = (app) => {
         setEditingNotes(app.notes || '');
-        setNotesAppId(app.id);
+        setNotesAppId(app.applicationId);
         setIsNotesModalOpen(true);
     };
 
     const handleSaveNotes = () => {
     setApplications(prevApps =>
         prevApps.map(app =>
-        app.id === notesAppId ? { ...app, notes: editingNotes } : app
+        app.applicationId === notesAppId ? { ...app, notes: editingNotes } : app
         )
     );
     setIsNotesModalOpen(false);
@@ -210,7 +274,7 @@ function DashboardPage() {
                 <Modal isOpen={isViewEditModalOpen} onClose={handleCloseViewEditModal} 
                     title={isEditModeActive ? "Edit Application Details" : "View Application Details"}>
                     <ApplicationForm
-                        key={selectedApp.id + (isEditModeActive ? '-edit' : '-view')} 
+                        key={selectedApp.applicationId + (isEditModeActive ? '-edit' : '-view')} 
                         initialData={editFormData} // Pass the editable form data
                         onFormChange={handleEditFormChange} // To make it controlled
                         isReadOnly={!isEditModeActive}

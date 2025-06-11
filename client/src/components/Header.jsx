@@ -12,7 +12,7 @@ function Header() {
 
     useEffect(() => {
         if (user.isAuthenticated) {
-            getUserProfile(user.token)
+            getUserProfile(user.token, 5)
                 .then((profile) => {
                     if (profile) {
                         setInitials(`${profile.firstName.charAt(0).toUpperCase()}${profile.lastName.charAt(0).toUpperCase()}`);
