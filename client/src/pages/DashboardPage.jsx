@@ -9,6 +9,7 @@ import ApplicationsTable from '../components/ApplicationsTable';
 import NotesModal from '../components/NotesModal';
 import Header from '../components/Header';
 import styles from './DashboardPage.module.css';
+import Footer from '../components/Footer';
 
 function DashboardPage() {
     const [applications, setApplications] = useState([
@@ -241,6 +242,7 @@ function DashboardPage() {
                 </div>
             </Modal>
             )}
+            <Footer></Footer>
         </div>
     );
 }
