@@ -27,17 +27,17 @@ function LoginPage() {
                     <div className={styles.registerBox}>
                         {newUser ? (
                         <>
-                            <h1>No Account?</h1>
-                            <h2>Sign up to get started</h2>
-                        </>
-                        ) : (
-                        <>
                             <h1>Already Have an Account?</h1>
                             <h2>Sign in here</h2>
                         </>
+                        ) : (
+                        <>
+                            <h1>No Account?</h1>
+                            <h2>Sign up to get started</h2>
+                        </>
                         )}
                         <button className={styles.registerButton} onClick={() => setNewUser(!newUser)}>
-                            Sign Up
+                            {!newUser ? 'Sign Up' : 'Sign In'}
                         </button>
                     </div>
                 </div>
