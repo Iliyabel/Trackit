@@ -10,5 +10,6 @@
 # Firebase configuration file
 **/firebase_config.json
 
-
+# Environment variables
+**.env
 
