@@ -1,0 +1,31 @@
+.notesModal {
+  padding: 20px;
+}
+
+.notesModal label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: var(--light-text);
+  font-size: 1em;
+}
+
+.notesModal textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 12px;
+  font-size: 1em;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  border-radius: 12px;
+  border: 1px solid var(--light-border);
+  background-color: var(--input-background);
+  resize: vertical;
+  color: var(--dark-text);
+  box-shadow: 1px 1px 8px rgba(216, 150, 150, 0.05);
+}
+
+.notesModal textarea:focus {
+  border: 1px solid var(--secondary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(226, 125, 79, 0.2);
+}

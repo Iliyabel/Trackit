@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './NotesModal.module.css'; 
 
 function NotesModal({ notes, onChange }) {
   return (
-    <div className="notes-modal">
+    <div className={styles.notesModal}>
       <label htmlFor="notes-area">Notes:</label>
       <textarea
         id="notes-area"
