@@ -9,19 +9,57 @@
 }
 
 .modal {
-    padding: 40px;
-    border-radius: 8px;
+    padding: 25px 30px;
+    border-radius: 20px;
     position: relative;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     background: var(--background-white);
+    /* width: 90%; */
+    max-width: 750px;
+    max-height: 90vh;
+}
+
+.modal-content {
+    background-color: var(--background-white);
+    padding: 25px 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 750px;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: var(--dark-text-color);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--light-border);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.6em;
+    color: var(--secondary-color);
 }
 
 .closeButton {
     position: absolute;
+    color: var(--light-text);
     top: 0.5rem;
     right: 0.5rem;
     font-size: 1.5rem;
     line-height: 20px;
     text-align: center;
     cursor: pointer;
+    border: none;
+}
+
+.closeButton:hover {
+    color: var(--dark-text);
+    box-shadow: none;
+    transform: none;
 }
