@@ -2,6 +2,35 @@
   overflow-x: auto; 
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1.5px solid var(--light-border-color);
+    color: var(--light-text-color);
+}
+th {
+    border-bottom: 2px solid #7D898F;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    white-space: nowrap; 
+    padding-right: 20px;
+}
+
+th:hover {
+    background-color: rgba(230, 230, 230, 0.5); 
+}
+
+tbody tr:hover {
+    background-color: #f0f0f0; 
+    cursor: pointer;
+}
+
 .statusCell {
   padding: 5px 8px;
   border-radius: 20px;
