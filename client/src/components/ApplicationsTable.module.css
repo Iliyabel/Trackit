@@ -10,11 +10,11 @@ table {
 th, td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1.5px solid var(--light-border-color);
-    color: var(--light-text-color);
+    border-bottom: 1.5px solid var(--light-border);
+    color: var(--light-text);
 }
 th {
-    border-bottom: 2px solid #7D898F;
+    border-bottom: 2px solid var(--darker-border);
     cursor: pointer;
     position: relative;
     user-select: none;
