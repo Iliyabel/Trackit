@@ -33,7 +33,7 @@ function Header() {
             <div className={styles.buttonContainer}>
                 {user.isAuthenticated ? (
                     <>
-                        <div className={styles.roundButton}>{initials}</div>
+                        {initials && <div className={styles.roundButton}>{initials}</div>}
                         <button className={styles.logoutButton} onClick={logout}>Logout</button>
                     </>
                 ) : (
