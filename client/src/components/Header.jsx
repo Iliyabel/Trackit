@@ -33,7 +33,7 @@ function Header() {
             <div className={styles.buttonContainer}>
                 {user.isAuthenticated ? (
                     <>
-                        {initials && <div className={styles.roundButton}>{initials}</div>}
+                        <div className={styles.roundButton}>{initials ? initials : <img src="src/assets/profileIcon.svg" alt="Default Avatar"/>}</div>
                         <button className={styles.logoutButton} onClick={logout}>Logout</button>
                     </>
                 ) : (
