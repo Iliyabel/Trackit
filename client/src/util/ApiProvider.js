@@ -54,7 +54,11 @@ function deleteApplication(authToken, applicationId, retries = 3, base_delay = 3
 
 function _deleteApplication(authToken, applicationId) {
     console.log("Deleting application");
-    return fetch(endpoints.applications + `?Application-Id=${applicationId}`, {
+
+    const param = encodeURIComponent(applicationId);
+    let url = endpoints.applications + `?Application-Id=${param}`;
+
+    return fetch(url, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${authToken}`,
