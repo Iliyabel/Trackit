@@ -1,10 +1,13 @@
 import React, { createContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../util/firebase'; 
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
+    const navigate = useNavigate();
+    
     const [user, setUser] = useState({
         user: null,
         isAuthenticated: false,
@@ -20,6 +23,7 @@ function AuthProvider({ children }) {
                     isAuthenticated: false,
                     token: null
                 });
+                navigate('/login');
                 return;
             }
             user.getIdToken().then((token) => {
