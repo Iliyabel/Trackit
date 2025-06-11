@@ -25,13 +25,13 @@ function Header() {
                     setInitials(null);
                 });
         }
-    }, [user]);
+    }, [user.isAuthenticated]);
 
     return (
         <header className={styles.header}>
             <img onClick={() => navigate('/')} src={'src/assets/logoText.svg'} alt="Trackit logo" />
             <div className={styles.buttonContainer}>
-                {user ? (
+                {user.isAuthenticated ? (
                     <>
                         <div className={styles.roundButton}>{initials}</div>
                         <button className={styles.logoutButton} onClick={logout}>Logout</button>
