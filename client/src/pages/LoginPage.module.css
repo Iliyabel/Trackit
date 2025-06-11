@@ -14,7 +14,8 @@
 
 .logo {
     height: auto;
-    width: 25%;
+    max-height: 10vh;
+    max-width: 10vw;
     max-width: 500px;
     position: absolute;
     z-index: 1000;
