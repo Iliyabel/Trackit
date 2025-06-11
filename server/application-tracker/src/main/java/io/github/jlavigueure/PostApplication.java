@@ -57,13 +57,15 @@ public class PostApplication implements RequestHandler<APIGatewayProxyRequestEve
         String userId = (String)input.getRequestContext().getAuthorizer().get(HEADER_USER_ID);
         // Extract the application id from the headers
         String applicationId = input.getHeaders().get(HEADER_APPLICATION_ID);
+        if(applicationId == null) applicationId = input.getHeaders().get(HEADER_APPLICATION_ID.toLowerCase()); //check for lowercase header as well
+        
         if (userId == null || userId.isEmpty()) {
             return new APIGatewayProxyResponseEvent()
                 .withHeaders(corsHeaders())
                 .withStatusCode(ERROR_CODE_BAD_REQUEST)
                 .withBody(HEADER_USER_ID + " header is required");
         }
-
+        System.out.println("Application-Id: " + applicationId);
         try {
             // Parse the request body to get the application data
             Map<String, Object> newApplication = objectMapper.readValue(
