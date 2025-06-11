@@ -274,8 +274,8 @@ function DashboardPage() {
                         handleNotesClick={handleNotesClick}
                     />
 
-                    {processedApplications.length === 0 && applications.length > 0 && <p>No applications match your current filters.</p>}
-                    {applications.length === 0 && <p>No applications added yet. Click "+ Add New" to start!</p>}
+                    {processedApplications.length === 0 && applications.length > 0 && <p className={styles.missingApplications}>No applications match your current filters.</p>}
+                    {applications.length === 0 && <p className={styles.missingApplications}>No applications added yet. Click "+ Add New" to start!</p>}
                 </DashboardSection>
             </div>
 
