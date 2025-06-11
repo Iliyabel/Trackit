@@ -37,6 +37,37 @@ function _getApplications(authToken, applicationId = null) {
 }
 
 /**
+ * Deletes an application for a user.
+ * 
+ * @param {string} authToken JWT token for authentication. Also used to identify the user.
+ * @param {string} applicationId ID of the application to be deleted.
+ * @returns Promise resolving to the deleted application data.
+ * @throws {Error} If the response is not ok, throws an error with the status code.
+ */
+function deleteApplication(authToken, applicationId, retries = 3, base_delay = 300) {
+    return retry(() => _deleteApplication(authToken, applicationId), retries, base_delay)
+        .catch(error => {
+            console.error("Failed to delete application after retries:", error);
+            throw error;
+        });
+}
+
+function _deleteApplication(authToken, applicationId) {
+    console.log("Deleting application");
+    return fetch(endpoints.applications + `?Application-Id=${applicationId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${authToken}`,
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`${response.status}`);
+        return response.json();
+    });
+}
+
+
+/**
  * Post an application to the API.
  *
  * @param {string} authToken JWT token for authentication. Also used to identify the user.
