@@ -20,6 +20,7 @@
   border-radius: 15px;
   background-color: var(--background-white); 
   box-shadow: 0 1px 40px rgba(0,0,0,0.05);
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   border: 1.5px solid var(--light-border);
 }
 
@@ -37,7 +38,31 @@
 }
 
 .statTotal .statCount { color: var(--status-applied); } 
+.statTotal:hover { 
+  border: 1.5px solid var(--status-applied); 
+  background-color: var(--status-applied-light);
+} 
+
 .statInterviewing .statCount { color: var(--status-interviewing); } 
+.statInterviewing:hover { 
+  border: 1.5px solid var(--status-interviewing); 
+  background-color: var(--status-interviewing-light);
+} 
+
 .statOffer .statCount { color: var(--status-offer-received); } 
+.statOffer:hover { 
+  border: 1.5px solid var(--status-offer-received); 
+  background-color: var(--status-offer-received-light);
+}
+
 .statAccepted .statCount { color: var(--status-accepted); }
+.statAccepted:hover { 
+  border: 1.5px solid var(--status-accepted); 
+  background-color: var(--status-accepted-light);
+}
+
 .statRejected .statCount { color: var(--status-rejected); } 
+.statRejected:hover { 
+  border: 1.5px solid var(--status-rejected); 
+  background-color: var(--status-rejected-light);
+}
