@@ -6,23 +6,29 @@
   background-color: var(--background-white);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   max-height: 80px;
+  min-height: 60px;
+  height: 10vh;
   justify-content: space-between;
 }
 
 .header img {
   height: 100%;
   width: auto;
+  cursor: pointer;
 }
 
 .header button {
   border: 2px solid var(--primary-color);
-  color: var(--primary-color)
+  color: var(--primary-color);
+  width: 130px;
+  border-radius: 40px;
+  height: 45px;
 }
 
 .buttonContainer {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 }
 
 .roundButton {
@@ -41,4 +47,14 @@
   color: white;
   font-size: 1.2em;
   font-weight: bold;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.roundButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.roundButton:active {
+  transform: scale(0.95);
 }

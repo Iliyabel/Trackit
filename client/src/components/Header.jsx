@@ -29,7 +29,7 @@ function Header() {
 
     return (
         <header className={styles.header}>
-            <img src={'src/assets/logoText.svg'} alt="Trackit logo" />
+            <img onClick={() => navigate('/')} src={'src/assets/logoText.svg'} alt="Trackit logo" />
             <div className={styles.buttonContainer}>
                 {user ? (
                     <>
