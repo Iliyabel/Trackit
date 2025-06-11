@@ -66,7 +66,6 @@ function _deleteApplication(authToken, applicationId) {
     });
 }
 
-
 /**
  * Post an application to the API.
  *
@@ -176,4 +175,4 @@ async function retry(func, retries = 3, base_delay = 300) {
     throw finalError;
 }
 
-export { getApplications, postApplication, getUserProfile, postUserProfile };
+export { getApplications, postApplication, deleteApplication ,getUserProfile, postUserProfile };
