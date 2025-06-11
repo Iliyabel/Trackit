@@ -12,8 +12,8 @@ let endpoints = {
  * @returns Promise resolving to the applications data.
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
-function getApplications(authToken, applicationId = null) {
-    return retry(() => _getApplications(authToken, applicationId), 3, 300)
+function getApplications(authToken, applicationId = null, retries = 3, base_delay = 300) {
+    return retry(() => _getApplications(authToken, applicationId), retries, base_delay)
         .catch(error => {
             console.error("Failed to fetch applications after retries:", error);
             throw error;
@@ -44,8 +44,8 @@ function _getApplications(authToken, applicationId = null) {
  * @returns Promise resolving to the created application data.
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
-function postApplication(authToken, application) {
-    return retry(() => _postApplication(authToken, application), 3, 300)
+function postApplication(authToken, application, retries = 3, base_delay = 300) {
+    return retry(() => _postApplication(authToken, application), retries, base_delay)
         .catch(error => {
             console.error("Failed to post application after retries:", error);
             throw error;
@@ -54,12 +54,16 @@ function postApplication(authToken, application) {
 
 function _postApplication(authToken, application) {
     console.log("Posting application");
+    const headers = {'Authorization': `Bearer ${authToken}`,};
+
+    // If application has an ID, include it in the headers
+    if (application && application.applicationId) {
+        headers['Application-Id'] = application.applicationId;
+    } 
+    
     return fetch(`${apiUrl}/applications`, {
         method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${authToken}`,
-            ...(application.id && { 'Application-Id': application.id }) // Include Application-Id if it exists
-        },
+        headers: headers,
         body: JSON.stringify(application)
     })
     .then(response => {
@@ -75,8 +79,8 @@ function _postApplication(authToken, application) {
  * @returns Promise resolving to the user profile data.
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
-function getUserProfile(authToken) {
-    return retry(() => _getUserProfile(authToken), 3, 300)
+function getUserProfile(authToken, retries = 3, base_delay = 300) {
+    return retry(() => _getUserProfile(authToken), retries, base_delay)
         .catch(error => {
             console.error("Failed to fetch user profile after retries:", error);
             throw error;
@@ -104,8 +108,8 @@ function _getUserProfile(authToken) {
  * @returns Promise resolving to the created profile data.
  * @throws {Error} If the response is not ok, throws an error with the status code.
  */
-function postUserProfile(authToken, profile) {
-    return retry(() => _postUserProfile(authToken, profile), 3, 300)
+function postUserProfile(authToken, profile, retries = 3, base_delay = 300) {
+    return retry(() => _postUserProfile(authToken, profile), retries, base_delay)
         .catch(error => {
             console.error("Failed to post user profile after retries:", error);
             throw error;
