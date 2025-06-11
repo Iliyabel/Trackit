@@ -3,6 +3,7 @@ import DashboardSection from '../components/DashboardSection';
 import Modal from '../components/Modal';
 import ApplicationForm from '../components/ApplicationForm';
 import ApplicationStats from '../components/ApplicationStats';
+import ApplicationFilters from '../components/ApplicationFilters';
 import NotesModal from '../components/NotesModal';
 import Header from '../components/Header';
 import { filterApplications, sortApplications } from '../util/filter';
@@ -171,21 +172,17 @@ function DashboardPage() {
 
                 <DashboardSection title="Applications" onAdd={handleOpenAddModal}>
 
-                    <div className="filters-container">
-                        <input type="text" placeholder="Filter by Position..." value={filterPosition} 
-                            onChange={(e) => setFilterPosition(e.target.value)} />
-
-                        <input type="text" placeholder="Filter by Company..." value={filterCompany} 
-                            onChange={(e) => setFilterCompany(e.target.value)} />
-
-                        <input type="text" placeholder="Filter by Location..." value={filterLocation} 
-                            onChange={(e) => setFilterLocation(e.target.value)} />
-
-                        <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-                            <option value="All">All Statuses</option>
-                            {statusOrder.map(status => (<option key={status} value={status}>{status}</option>))}
-                        </select>
-                    </div>
+                    <ApplicationFilters
+                        filterPosition={filterPosition}
+                        setFilterPosition={setFilterPosition}
+                        filterCompany={filterCompany}
+                        setFilterCompany={setFilterCompany}
+                        filterLocation={filterLocation}
+                        setFilterLocation={setFilterLocation}
+                        filterStatus={filterStatus}
+                        setFilterStatus={setFilterStatus}
+                        statusOrder={statusOrder}
+                    />
 
                     <div className="table-wrapper">
                         <table>
