@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, use } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginCard.module.css';
 import Modal from './Modal.jsx';
@@ -7,7 +7,7 @@ import { postUserProfile } from '../util/ApiProvider.js';
 
 function LoginCard({ newUser, setNewUser, ...props }) {
     const navigate = useNavigate();
-    const { login, register, resetPassword } = useContext(AuthContext);
+    const { user, login, register, resetPassword } = useContext(AuthContext);
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -68,8 +68,9 @@ function LoginCard({ newUser, setNewUser, ...props }) {
     const handleRegister = async () => {
         if(!validateFields()) return;
         try {
-            await register(email, password);
-            await postUserProfile({
+            const token = await register(email, password)
+                .then((userCredential) => userCredential.user.getIdToken());
+            await postUserProfile(token, {
                 firstName: firstName,
                 lastName: lastName,
                 email: email
