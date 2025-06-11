@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useContext } from 'react';
 import { filterApplications, sortApplications } from '../util/filter';
-import { getApplications, postApplication, getUserProfile, postUserProfile } from '../util/ApiProvider.js';
+import { getApplications, postApplication, deleteApplication } from '../util/ApiProvider.js';
 import { AuthContext } from '../components/AuthProvider';
 import DashboardSection from '../components/DashboardSection';
 import Modal from '../components/Modal';
@@ -163,10 +163,26 @@ function DashboardPage() {
         } 
     };
 
-    const handleDeleteApplication = () => {
-        if (selectedApp && window.confirm(`Are you sure you want to delete the application for "${selectedApp.position}" at "${selectedApp.company}"?`)) {
-            setApplications(prevApps => prevApps.filter(app => app.applicationId !== selectedApp.applicationId));
-            handleCloseViewEditModal();
+    const handleDeleteApplication = async () => {
+        if (!selectedApp || !selectedApp.applicationId) {
+            setError("No application selected to delete.");
+            return;
+        }
+
+        if (!user || !user.token) {
+            setError("Authentication required to delete application.");
+            return;
+        }
+
+        if (window.confirm(`Are you sure you want to delete the application for "${selectedApp.position}" at "${selectedApp.company}"?`)) {
+            try {
+                await deleteApplication(user.token, selectedApp.applicationId);
+                setApplications(prevApps => prevApps.filter(app => app.applicationId !== selectedApp.applicationId));
+                handleCloseViewEditModal();
+            } catch (apiError) {
+                console.error("Failed to delete application:", apiError);
+                setError(apiError.message || "Could not delete application. Please try again.");
+            }
         }
     };
 
