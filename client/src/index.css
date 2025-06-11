@@ -26,10 +26,15 @@
   --disabled: grey;
 
   --status-applied: #1c1b5a;
+  --status-applied-light: #1c1b5a10;
   --status-interviewing: #eeb200;
+  --status-interviewing-light: #eeb20010;
   --status-accepted: #4CAF50;
+  --status-accepted-light: #4caf4f15;
   --status-offer-received: #3d87dd;
+  --status-offer-received-light: #3d88dd13;
   --status-rejected: #e74c3c;
+  --status-rejected-light: #e74d3c0c;
 }
 
 * {
