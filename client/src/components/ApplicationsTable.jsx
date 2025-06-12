@@ -1,4 +1,5 @@
 import styles from './ApplicationsTable.module.css';
+import linkIcon from '../assets/linkIcon.png'; 
 
 function ApplicationsTable({
     processedApplications,
@@ -45,7 +46,7 @@ function ApplicationsTable({
                                             rel="noopener noreferrer"
                                             onClick={(e) => e.stopPropagation()} // Prevent row click when clicking link
                                         >
-                                            <img src="src/assets/linkIcon.png" alt="Link Icon" />
+                                            <img src={linkIcon} alt="Link Icon" />
                                         </a>
                                     ) : '-'}
                                 </td>
