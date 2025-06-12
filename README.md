@@ -135,9 +135,7 @@ Our projects backend uses serverless functions (Lambda) and AWS's API Gateway as
 
 Our front end is rendered using React. We use the react router for navigation. Our website is composed of primarily 4 pages, and it uses a set of smaller components and utility classes. 
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- RoadMap -->
 ## 🛣️ Road Map
