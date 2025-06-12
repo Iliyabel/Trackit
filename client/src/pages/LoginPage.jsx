@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../components/AuthProvider';
 import LoginCard from '../components/LoginCard';
 import styles from './LoginPage.module.css'
-import logo from '../assets/logo.svg'; 
+import logoText from '../assets/LogoText.svg'; 
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ function LoginPage() {
     return (
         <>
             <div className={styles.loginPage}>
-                <img src={logo} alt="Logo" className={styles.logo} />
+                <img src={logoText} alt="Logo" className={styles.logo} />
                 <div className={styles.leftPanel}>
                     <LoginCard newUser={newUser} setNewUser={setNewUser} className={styles.loginCard} />
                 </div>
