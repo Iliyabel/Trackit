@@ -3,7 +3,8 @@ import styles from './Header.module.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider.jsx';
 import { getUserProfile } from '../util/ApiProvider.js';
-import logo from '../assets/logoText.svg'; // Adjust the path as necessary
+import logo from '../assets/LogoText.svg'; 
+import profileIcon from '../assets/profileIcon.svg';
 
 
 function Header() {
@@ -74,7 +75,7 @@ function Header() {
                             onClick={handleAccountClick} 
                             title="Account Settings" 
                         >
-                            {initials ? initials : <img src="/src/assets/profileIcon.svg" alt="Profile" className={styles.profileIconImage} />}
+                            {initials ? initials :  <img src={profileIcon} alt="Profile" className={styles.profileIconImage} />}
                         </div>
                         <button className={styles.logoutButton} onClick={handleLogoutClick}>Logout</button>
                     </>
