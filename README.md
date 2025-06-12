@@ -23,6 +23,8 @@
   <p align="center">
     Trackit is an application tracking system which allows users to better manage their job hunting process, gain insights into their progress, and stay on top of opportunities.
     <br />
+    <a href="https://trackit-1-ha2j.onrender.com"><strong>Visit Site»</strong></a>
+    &middot;
     <a href="https://github.com/Iliyabel/Trackit"><strong>Explore the docs »</strong></a>
     <br />
     <br />
@@ -62,6 +64,9 @@ Trackit allows users to login then add, edit and delete job applications. It giv
 
 <!-- HOW TO USE -->
 ## 📌 Getting Started
+
+You can visit our deployed site <a href="https://trackit-1-ha2j.onrender.com">here</a>. See below on deploying the code locally.  
+
 ### Prerequisites
 
 * AWS API gateway URL
@@ -147,8 +152,8 @@ From our original proposal:
 - [x] Create a front end that allows users to create and interact with job applications
   - [x] Add dynamic filter
   - [x] Ensure responsive UI (excluding mobile)
-- [ ] Deploy application using a cloud service
-  - [ ] Deploy front end using a CDN
+- [x] Deploy application using a cloud service
+  - [x] Deploy front end using a CDN
   - [x] Deploy back end using serverless cloud functions
 
 ### P2 - Secondary
