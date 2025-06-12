@@ -54,7 +54,7 @@
 <!-- ABOUT THE PROJECT -->
 ## ℹ️ About The Project
 
-<img src="readmeAssets/dashboard.png" alt="Logo" width="90%" height="">
+<img src="readmeAssets/dashboard.png" alt="Logo" >
 
 Trackit allows users to login then add, edit and delete job applications. It gives an easy-to-use UI, delivering key insights on your job hunt and full control on sortting, filter and querying for job applications. 
 
@@ -63,7 +63,6 @@ Trackit allows users to login then add, edit and delete job applications. It giv
 <!-- HOW TO USE -->
 ## 📌 Getting Started
 ### Prerequisites
-This is an example of how to list things you need to use the software and how to install them.
 
 * AWS API gateway URL
   ```
