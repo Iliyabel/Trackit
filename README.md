@@ -157,13 +157,6 @@ From our original proposal:
 - [ ] Implement reminder feature allowing user to add To-dos
 - [ ] Create an API to automatically parse a job posting and retrieve the application data
 
-### P3 - Low Priority
-- [ ] Implement multiple views of job applications, i.e. condensed, card view, and a detailed view
-- [ ] Implement light and dark modes
-- [ ] Connection with a public API to retreive company logos to be displayed with applications
-- [ ] Implement a feature to track a user's job applications and retrieve similar job postings using a public API
-
-
 <!-- Contributions -->
 ## 👥 Contributors
 <table>
