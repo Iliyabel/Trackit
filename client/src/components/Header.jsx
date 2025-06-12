@@ -3,6 +3,7 @@ import styles from './Header.module.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider.jsx';
 import { getUserProfile } from '../util/ApiProvider.js';
+import logo from '../assets/logoText.svg'; // Adjust the path as necessary
 
 
 function Header() {
@@ -64,7 +65,7 @@ function Header() {
 
     return (
         <header className={styles.header}>
-            <img onClick={handleLogoClick} src={'/src/assets/logoText.svg'} alt="Trackit logo" className={styles.logo} />
+            <img onClick={handleLogoClick} src={logo} alt="Trackit logo" className={styles.logo} />
             <div className={styles.buttonContainer}>
                 {user && user.isAuthenticated ? ( // Check user and isAuthenticated
                     <>
