@@ -4,6 +4,7 @@ import styles from './LoginCard.module.css';
 import Modal from './Modal.jsx';
 import { AuthContext } from './AuthProvider.jsx';
 import { postUserProfile } from '../util/ApiProvider.js'; 
+import logo from '../assets/logo.svg'; 
 
 function LoginCard({ newUser, setNewUser, ...props }) {
     const navigate = useNavigate();
@@ -180,7 +181,7 @@ function LoginCard({ newUser, setNewUser, ...props }) {
         <>
         <div className={styles.card}>
             <div>
-                <img src="src/assets/logo.svg" alt="Logo" className={styles.logo} />
+                <img src={logo} alt="Logo" className={styles.logo} />
             </div>
             <form className={styles.form} onKeyDown={(event) => {if (event.key === 'Enter') {handleSubmit(event)}}} onSubmit={handleSubmit}>
                 {form}
