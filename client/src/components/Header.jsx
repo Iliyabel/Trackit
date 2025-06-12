@@ -11,30 +11,71 @@ function Header() {
     const [initials, setInitials] = useState(null);
 
     useEffect(() => {
-        if (user.isAuthenticated) {
-            getUserProfile(user.token, 5)
+        let isMounted = true; // Flag to prevent state update on unmounted component
+        if (user && user.isAuthenticated && user.token) { // Ensure user and token exist
+            getUserProfile(user.token, 5) 
                 .then((profile) => {
-                    if (profile) {
-                        setInitials(`${profile.firstName.charAt(0).toUpperCase()}${profile.lastName.charAt(0).toUpperCase()}`);
-                    } else {
-                        setInitials(null);
+                    if (isMounted) {
+                        if (profile && profile.firstName && profile.lastName) {
+                            setInitials(`${profile.firstName.charAt(0).toUpperCase()}${profile.lastName.charAt(0).toUpperCase()}`);
+                        } else {
+                            // Use default icon
+                            console.warn("Profile data incomplete or missing name fields:", profile);
+                            setInitials(null); // Fallback to default icon
+                        }
                     }
                 })
                 .catch((error) => {
-                    console.error('Error fetching user profile:', error);
-                    setInitials(null);
+                    if (isMounted) {
+                        console.error('Error fetching user profile for initials:', error);
+                        setInitials(null); // Fallback to default icon on error
+                    }
                 });
+        } else {
+            if (isMounted) {
+                setInitials(null); // Clear initials if user is not authenticated
+            }
         }
-    }, [user.isAuthenticated]);
+        return () => {
+            isMounted = false; 
+        };
+    }, [user]); 
+
+    const handleAccountClick = () => {
+        navigate('/profile'); // Navigate to the AccountPage
+    };
+
+    const handleLogoClick = () => {
+        if (user && user.isAuthenticated) {
+            navigate('/dashboard'); // Navigate to dashboard if logged in
+        } else {
+            navigate('/login'); // Navigate to login if not logged in
+        }
+    };
+    
+    const handleLogoutClick = async () => {
+        try {
+            await logout();
+            navigate('/login'); // Redirect to login page after logout
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    };
 
     return (
         <header className={styles.header}>
-            <img onClick={() => navigate('/')} src={'src/assets/logoText.svg'} alt="Trackit logo" />
+            <img onClick={handleLogoClick} src={'/src/assets/logoText.svg'} alt="Trackit logo" className={styles.logo} />
             <div className={styles.buttonContainer}>
-                {user.isAuthenticated ? (
+                {user && user.isAuthenticated ? ( // Check user and isAuthenticated
                     <>
-                        <div className={styles.roundButton}>{initials ? initials : <img src="src/assets/profileIcon.svg" alt="Default Avatar"/>}</div>
-                        <button className={styles.logoutButton} onClick={logout}>Logout</button>
+                        <div 
+                            className={styles.roundButton} 
+                            onClick={handleAccountClick} 
+                            title="Account Settings" 
+                        >
+                            {initials ? initials : <img src="/src/assets/profileIcon.svg" alt="Profile" className={styles.profileIconImage} />}
+                        </div>
+                        <button className={styles.logoutButton} onClick={handleLogoutClick}>Logout</button>
                     </>
                 ) : (
                     <>
